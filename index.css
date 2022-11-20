@@ -136,10 +136,10 @@ body {
 .sub5 p {
   color: rgb(56, 6, 74);
 }
-.sub5 {
+.sub6 {
   background: linear-gradient(145deg, rgb(255, 233, 123), rgb(208, 255, 142));
 }
-.sub5 p {
+.sub6 p {
   color: rgb(132, 132, 20);
 }
 .subF2 p {
@@ -186,6 +186,12 @@ body {
 }
 .items p {
   margin: 0 0 0 20px;
+}
+.rot {
+  transform: rotate(180deg);
+}
+.fa-chevron-down {
+  transition: 0.4s;
 }
 .items span {
   margin: 0 20px 0 0;

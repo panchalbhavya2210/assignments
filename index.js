@@ -10,35 +10,43 @@ function runBars() {
   barBlock.classList.toggle("navCall");
 }
 
+let spanChev = document.querySelectorAll(".fa-chevron-down");
+
 function osOpener() {
   let asOsOP = document.getElementById("asOsOP");
 
+  spanChev[0].classList.toggle("rot");
   asOsOP.classList.toggle("osOpener");
 }
 
 function dbmsOpener() {
   let asDbmsOp = document.getElementById("asDbmsOP");
+  spanChev[1].classList.toggle("rot");
 
   asDbmsOp.classList.toggle("osOpener");
 }
 
 function cgOpener() {
   let asCgOp = document.getElementById("asCgOP");
+  spanChev[2].classList.toggle("rot");
 
   asCgOp.classList.toggle("osOpener");
 }
 function misOpener() {
   let asMisOp = document.getElementById("asMisOP");
+  spanChev[3].classList.toggle("rot");
 
   asMisOp.classList.toggle("osOpener");
 }
-function dsOpener() {
-  let asDsOp = document.getElementById("asDsOP");
-
-  asDsOp.classList.toggle("osOpener");
-}
 function othOpener() {
   let asOthOp = document.getElementById("asOthOP");
+  spanChev[4].classList.toggle("rot");
 
   asOthOp.classList.toggle("osOpener");
+}
+function dsOpener() {
+  let asDsOp = document.getElementById("asDsOP");
+  spanChev[5].classList.toggle("rot");
+
+  asDsOp.classList.toggle("osOpener");
 }
