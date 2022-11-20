@@ -83,7 +83,7 @@ body {
 .mainContent {
   width: 100%;
   height: 220px;
-  margin: 20px 0;
+  margin: 20px 0 5px 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -118,6 +118,24 @@ body {
 .sub2 p {
   color: rgb(165, 28, 28);
 }
+.sub3 {
+  background: linear-gradient(-45deg, rgb(13, 107, 2), rgb(107, 255, 149));
+}
+.sub3 p {
+  color: rgb(0, 88, 56);
+}
+.sub4 {
+  background: linear-gradient(145deg, rgb(251, 129, 255), rgb(65, 11, 83));
+}
+.sub4 p {
+  color: rgb(56, 6, 74);
+}
+.sub5 {
+  background: linear-gradient(145deg, rgb(91, 20, 255), rgb(194, 123, 255));
+}
+.sub5 p {
+  color: rgb(56, 6, 74);
+}
 .subF2 p {
   width: 80%;
   overflow: hidden;
@@ -132,6 +150,39 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.assignmentSection {
+  width: 100%;
+  height: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.4s;
+}
+.osOpener {
+  height: 200px;
+}
+.assignmentSubSection {
+  width: 90%;
+  height: 180px;
+  background-color: rgb(253, 253, 253);
+  box-shadow: 0 0 5px rgb(75, 75, 75);
+  border-radius: 10px;
+}
+.items {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.1px solid #000;
+}
+.items p {
+  margin: 0 0 0 20px;
+}
+.items span {
+  margin: 0 20px 0 0;
 }
 @media only screen and (min-width: 675px) {
   /* .barHolderPhone {
