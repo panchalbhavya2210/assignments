@@ -37,3 +37,8 @@ function dsOpener() {
 
   asDsOp.classList.toggle("osOpener");
 }
+function othOpener() {
+  let asOthOp = document.getElementById("asOthOP");
+
+  asOthOp.classList.toggle("osOpener");
+}
