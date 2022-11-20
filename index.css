@@ -80,8 +80,61 @@ body {
   font-size: 1.5rem;
   margin: 0 15px 0 15px;
 }
+.mainContent {
+  width: 100%;
+  height: 220px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.subContent {
+  width: 40%;
+  height: 180px;
+  background-color: rgb(241, 241, 241);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(69, 69, 69);
+  transition: 0.4s;
+}
+.subContent:hover {
+  scale: 0.95;
+  letter-spacing: 0;
+  box-shadow: 0 0 3px rgb(69, 69, 69);
+}
+.subHeader {
+  height: 140px;
+  background: linear-gradient(45deg, rgb(58, 99, 232), rgb(101, 209, 254));
+  border-radius: 10px 10px 0 0;
+}
+.subHeader p {
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgb(43, 33, 186);
+  letter-spacing: 4px;
+}
+.sub2 {
+  background: linear-gradient(45deg, rgb(254, 88, 88), rgb(254, 183, 101));
+}
+.sub2 p {
+  color: rgb(165, 28, 28);
+}
+.subF2 p {
+  width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.subFooter {
+  height: 40px;
+}
+
+.subHeader,
+.subFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 @media only screen and (min-width: 675px) {
-  .barHolderPhone {
+  /* .barHolderPhone {
     display: none;
-  }
+  } */
 }
