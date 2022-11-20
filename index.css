@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Work Sans;
+}
+
+.mainNav {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(45deg, rgb(98, 196, 253), rgb(17, 66, 138));
+}
+.subNav {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.barHolderPhone {
+  width: 50px;
+  height: 50px;
+  margin: 0 0 0 20px;
+  cursor: pointer;
+}
+.logoHolder {
+  margin: 0 0 0 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.logoHolder:hover {
+  scale: 0.9;
+}
+.bar {
+  width: 80%;
+  height: 3px;
+  background-color: #000;
+  margin: 10px auto;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.barOneMove {
+  transform: rotate(-45deg) translateY(18.5px);
+}
+.barTwo {
+  transition: 0;
+}
+.barTwoMove {
+  opacity: 0;
+}
+.barThiMove {
+  transform: rotate(45deg) translateY(-18.5px);
+}
+.navBlock {
+  width: 250px;
+  height: 90vh;
+  background-color: rgb(98, 196, 253);
+  position: fixed;
+  transform: translateX(-250px);
+  transition: 0.4s;
+}
+.navCall {
+  transform: translateX(0);
+}
+.firstGit {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 0.2px solid #000;
+}
+.icons {
+  font-size: 1.5rem;
+  margin: 0 15px 0 15px;
+}
+@media only screen and (min-width: 675px) {
+  .barHolderPhone {
+    display: none;
+  }
+}
