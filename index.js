@@ -50,3 +50,15 @@ function dsOpener() {
 
   asDsOp.classList.toggle("osOpener");
 }
+
+window.onscroll = function () {
+  let winY = window.scrollY;
+
+  if (winY > 100) {
+    let navStick = document.getElementById("navStick");
+
+    navStick.classList.add("mainSticky");
+  } else {
+    navStick.classList.remove("mainSticky");
+  }
+};

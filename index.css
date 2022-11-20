@@ -10,6 +10,7 @@ body {
 }
 
 .mainNav {
+  position: relative;
   width: 100%;
   height: 80px;
   background: linear-gradient(45deg, rgb(98, 196, 253), rgb(17, 66, 138));
@@ -26,6 +27,10 @@ body {
   height: 50px;
   margin: 0 0 0 20px;
   cursor: pointer;
+  z-index: 999;
+}
+.marginGive {
+  margin: 80px 0 0 0;
 }
 .logoHolder {
   margin: 0 0 0 10px;
@@ -33,6 +38,7 @@ body {
   letter-spacing: 2px;
   cursor: pointer;
   transition: 0.4s;
+  z-index: 999;
 }
 .logoHolder:hover {
   scale: 0.9;
@@ -58,11 +64,13 @@ body {
   transform: rotate(-45deg) translateY(-18.5px);
 }
 .navBlock {
-  width: 250px;
-  height: 90vh;
+  width: 280px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
   background-color: rgb(98, 196, 253);
   position: fixed;
-  transform: translateX(-250px);
+  transform: translateX(-280px);
   transition: 0.4s;
 }
 .navCall {
@@ -195,6 +203,43 @@ body {
 }
 .items span {
   margin: 0 20px 0 0;
+}
+.addSuggestion {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addSuggestionSub {
+  width: 90%;
+  height: 80px;
+  box-shadow: 0 0 4px rgb(67, 67, 67);
+  border-radius: 10px;
+  margin: 0 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.any {
+  margin: 0 0 0 20px;
+}
+.footerMain {
+  width: 100%;
+  height: 70px;
+  background-color: rgb(35, 35, 35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.fa-paper-plane {
+  margin: 0 20px 0 0;
+  font-size: 1.2rem;
+}
+.footerSub {
+  width: 80%;
+  text-align: center;
 }
 @media only screen and (min-width: 675px) {
   /* .barHolderPhone {
