@@ -240,6 +240,7 @@ body {
 .footerSub {
   width: 80%;
   text-align: center;
+  height: 70px;
 }
 @media only screen and (min-width: 675px) {
   /* .barHolderPhone {
