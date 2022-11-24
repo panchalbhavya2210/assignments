@@ -38,15 +38,10 @@ function misOpener() {
 
   asMisOp.classList.toggle("osOpener");
 }
-function othOpener() {
-  let asOthOp = document.getElementById("asOthOP");
-  spanChev[4].classList.toggle("rot");
 
-  asOthOp.classList.toggle("osOpener");
-}
 function dsOpener() {
   let asDsOp = document.getElementById("asDsOP");
-  spanChev[5].classList.toggle("rot");
+  spanChev[4].classList.toggle("rot");
 
   asDsOp.classList.toggle("osOpener");
 }

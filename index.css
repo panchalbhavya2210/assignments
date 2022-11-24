@@ -175,11 +175,11 @@ body {
   transition: 0.4s;
 }
 .osOpener {
-  height: 200px;
+  height: 300px;
 }
 .assignmentSubSection {
   width: 90%;
-  height: 180px;
+  height: 290px;
   background-color: rgb(253, 253, 253);
   box-shadow: 0 0 5px rgb(75, 75, 75);
   border-radius: 10px;
