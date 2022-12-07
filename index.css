@@ -177,6 +177,7 @@ th {
   letter-spacing: 4px;
 }
 .sub2 {
+  filter: grayscale(100%);
   background: linear-gradient(45deg, rgb(254, 88, 88), rgb(254, 183, 101));
 }
 .sub2 p {
@@ -201,6 +202,7 @@ th {
   color: rgb(56, 6, 74);
 }
 .sub6 {
+  filter: grayscale(100%);
   background: linear-gradient(145deg, rgb(255, 233, 123), rgb(208, 255, 142));
 }
 .sub6 p {
