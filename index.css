@@ -178,6 +178,7 @@ th {
 }
 .sub2 {
   filter: grayscale(100%);
+  z-index: -5555;
   background: linear-gradient(45deg, rgb(254, 88, 88), rgb(254, 183, 101));
 }
 .sub2 p {
