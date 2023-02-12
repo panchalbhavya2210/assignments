@@ -22,16 +22,19 @@
       href="/favicon/android-chrome-512x512.png"
     />
     <title>Assignments | BCA</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    />
+
     <link rel="stylesheet" href="index.css" />
   </head>
 
   <body>
     <header class="heightHeader">
       <nav class="navigationBar">
+        <div class="hamburger">
+          <div class="bars bOne"></div>
+          <div class="bars bTwo"></div>
+          <div class="bars bThi"></div>
+        </div>
+        <div class="nav-block"></div>
         <div class="logo-container">DOC&nbsp;&nbsp;&nbsp;HOSTER.</div>
         <div class="items">
           <div class="itemOne itemHover">Answer Submission</div>
@@ -51,17 +54,21 @@
             Here You Can Download The Assignment You Need For BCA. <br />
             Given By Monark | Created By Me.
           </p>
+
+          <button class="exploreBtn" onclick="scrollDown()">Explore</button>
         </div>
         <div class="image-container">
           <img
             src="./img/2842579-removebg-preview.png"
-            alt=""
+            alt="men-coding"
             srcset=""
             class="img-men-struggling"
           />
         </div>
       </div>
     </header>
+
+    <section class="assignment"></section>
     <script src="index.js"></script>
   </body>
 </html>

@@ -13,3 +13,10 @@ if (hours == 00) {
 } else if (hours > 17 && hours < 23) {
   greetUser.innerHTML = "Good Evening";
 }
+
+function scrollDown() {
+  window.scrollTo({
+    top: 750,
+    behavior: "smooth",
+  });
+}
