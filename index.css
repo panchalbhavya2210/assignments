@@ -56,3 +56,24 @@
   height: 100%;
   margin: 20px 0 0 0;
 }
+.assignment-text {
+  margin: 0 0 0 30px;
+}
+.marginH1 {
+  margin: 0 0 10px 0px;
+  font-size: 3rem;
+}
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  margin: 10px 0 10px 0;
+}
+.details-hero {
+  font-size: 1.2rem;
+}
+.greet-user {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin: 0 0 10px 0;
+}
