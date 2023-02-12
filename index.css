@@ -24,7 +24,7 @@
   font-size: 2rem;
 }
 .items {
-  width: 30%;
+  width: 38%;
   display: flex;
   justify-content: space-between;
   margin: 0 70px 0 0;
@@ -48,13 +48,13 @@
 }
 .imgContainer {
   width: 50%;
-  height: 87vh;
+  height: 80vh;
   overflow: hidden;
 }
 .img-men-struggling {
-  width: 600px;
-  height: 100%;
-  margin: 20px 0 0 0;
+  width: 500px;
+  height: 80%;
+  margin: 20px 90px 0 0;
 }
 .assignment-text {
   margin: 0 0 0 30px;
