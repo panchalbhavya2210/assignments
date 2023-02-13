@@ -23,8 +23,10 @@ function scrollDown() {
 
 let bars = document.querySelectorAll(".bars");
 let hamburger = document.querySelector(".hamburger");
+let navBlock = document.querySelector(".nav-block");
 
 function runHams() {
+  navBlock.classList.toggle("navToggle");
   hamburger.classList.toggle("rotate");
   bars[0].classList.toggle("barOneToggle");
   // bars[1].classList.add("");
