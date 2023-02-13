@@ -20,3 +20,13 @@ function scrollDown() {
     behavior: "smooth",
   });
 }
+
+let bars = document.querySelectorAll(".bars");
+let hamburger = document.querySelector(".hamburger");
+
+function runHams() {
+  hamburger.classList.toggle("rotate");
+  bars[0].classList.toggle("barOneToggle");
+  // bars[1].classList.add("");
+  bars[2].classList.toggle("barTwoToggle");
+}

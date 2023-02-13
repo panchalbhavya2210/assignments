@@ -106,7 +106,17 @@
 }
 @media only screen and (max-width: 635px) {
   .heightHeader {
+    width: 100%;
     height: 100vh;
+  }
+  .assignment-text,
+  .greet-user,
+  .marginH1,
+  .details-hero {
+    font-size: 1rem;
+  }
+  .image-container {
+    display: none;
   }
   .navigationBar {
     justify-content: flex-start;
@@ -121,6 +131,7 @@
     height: 40px;
     margin: 0 0 0 10px;
     cursor: pointer;
+    transition: 0.5s;
   }
   .items {
     display: none;
@@ -133,12 +144,33 @@
     z-index: 5;
     position: relative;
     border-radius: 10px;
+    transition: 0.5s;
   }
   .nav-block {
     display: block;
     width: 100%;
-    position: fixed;
-    height: 75%;
-    background-color: #f00;
+    position: absolute;
+    height: 100vh;
+    background-color: #eaeaea;
+  }
+  .logo-container {
+    width: 100%;
+    height: 72px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 0 0 60px;
+    font-weight: bolder;
+  }
+  .rotate {
+    transform: rotate(-180deg);
+  }
+  .barOneToggle {
+    transform: translateX(20px) translateY(4px) rotate(45deg);
+    width: 20px;
+  }
+  .barTwoToggle {
+    width: 20px;
+    transform: translateX(20px) translateY(-4px) rotate(-45deg);
   }
 }
