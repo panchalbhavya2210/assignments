@@ -100,11 +100,25 @@
   margin: 25px 0 0 5px;
   box-shadow: 0 0 0;
 }
-.assignment {
+
+.assignmentMain {
   width: 100%;
   height: 100vh;
 }
-@media only screen and (max-width: 635px) {
+.assigned-title {
+  font-size: 2rem;
+  font-weight: bolder;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.assigned-title p {
+  margin: 0 0 0 20px;
+}
+
+@media only screen and (max-width: 675px) {
   .heightHeader {
     width: 100%;
     height: 100vh;
@@ -212,5 +226,110 @@
     width: 15px;
     height: 15px;
     margin: 0 20px 0 0;
+  }
+  .hero-section {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+  }
+  .assignment-text {
+    margin: 0 10px 0 10px;
+  }
+  .greet-user {
+    font-size: 1.2rem;
+  }
+  .marginH1 {
+    font-size: 1.8rem;
+  }
+  .assignmentMain {
+    width: 100%;
+    height: 100vh;
+  }
+  .assigned-title {
+    font-size: 2rem;
+    font-weight: bolder;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 0.5px solid #000;
+  }
+  .assigned-title p {
+    margin: 0 0 0 20px;
+  }
+  .semFourAssignments {
+    width: 100%;
+    height: 250px;
+    margin: 10px 0 0 0;
+  }
+  .sem4 {
+    margin: 10px 0 0 30px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+  .sliderMain {
+    width: 100%;
+    height: 220px;
+    background-color: #fff;
+    margin: 10px 0 0 0;
+    overflow-y: scroll;
+  }
+  .sliderSub {
+    width: 700%;
+    height: 220px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .assignmentSubjects {
+    width: 250px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #000, -2px -2px 5px #b0b0b0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .assignmentSectionSub {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #181818d5;
+    bottom: -100%;
+    transition: 0.5s;
+    color: #fff;
+    backdrop-filter: blur(3px);
+    overflow-x: scroll;
+  }
+  .subjectTitleHolder {
+    font-size: 1.5rem;
+    font-weight: bolder;
+  }
+  .topToggle {
+    bottom: 0;
+    z-index: 1;
+  }
+  .assignMentHolder {
+    padding: 10px;
+  }
+  .assignMentHolder h3 {
+    margin: 0 0 20px 0;
+  }
+  .lines {
+    width: 100%;
+    height: 40px;
+    border-top: 0.5px solid #fff;
+    border-bottom: 0.5px solid #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .downIcon {
+    width: 30px;
+    height: 30px;
   }
 }

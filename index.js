@@ -32,3 +32,12 @@ function runHams() {
   // bars[1].classList.add("");
   bars[2].classList.toggle("barTwoToggle");
 }
+
+let semFourCard = document.querySelectorAll(".assignmentSubjects");
+let semFourDownload = document.querySelectorAll(".assignmentSectionSub");
+
+for (let i = 0; i < semFourCard.length; i++) {
+  semFourCard[i].addEventListener("click", () => {
+    semFourDownload[i].classList.toggle("topToggle");
+  });
+}
