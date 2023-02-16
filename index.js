@@ -29,8 +29,13 @@ function runHams() {
   navBlock.classList.toggle("navToggle");
   hamburger.classList.toggle("rotate");
   bars[0].classList.toggle("barOneToggle");
-  // bars[1].classList.add("");
   bars[2].classList.toggle("barTwoToggle");
+
+  let animeBar = document.querySelectorAll(".aniMationBar");
+
+  for (let i = 0; i < 4; i++) {
+    animeBar[i].classList.toggle("toggBar");
+  }
 }
 
 let semFourCard = document.querySelectorAll(".assignmentSubjects");
