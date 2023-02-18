@@ -2,7 +2,48 @@ let greetUser = document.getElementById("greet-user");
 
 let getDate = new Date();
 
+let day = getDate.getDay();
 let hours = getDate.getHours();
+let year = getDate.getFullYear();
+let month = getDate.getMonth() + 1;
+
+let dateShow = document.getElementById("dateShow");
+let time = document.getElementById("time");
+
+setInterval(updateTimer, 500);
+
+function updateTimer() {
+  let getTime = new Date();
+  let hours = getTime.getHours();
+  let minutes = getTime.getMinutes();
+  let seconds = getTime.getSeconds();
+
+  let hoursId = document.getElementById("hours");
+  let minutesId = document.getElementById("minutes");
+  let secondsId = document.getElementById("seconds");
+
+  if (hoursId.innerHTML < 10) {
+    hoursId.innerHTML = "0" + hours;
+  } else {
+    hoursId.innerHTML = hours;
+  }
+  if (minutesId.innerHTML < 10) {
+    minutesId.innerHTML = "0" + minutes;
+  } else {
+    minutesId.innerHTML = minutes;
+  }
+  if (secondsId.innerHTML < 10) {
+    secondsId.innerHTML = "0" + seconds;
+  } else {
+    secondsId.innerHTML = seconds;
+  }
+}
+
+if (day < 10 && month < 10) {
+  dateShow.innerHTML = "0" + day + "/" + "0" + month + "/" + year;
+} else {
+  dateShow.innerHTML = day + "/" + month + "/" + year;
+}
 
 if (hours == 00) {
   greetUser.innerHTML = "Good Night";
