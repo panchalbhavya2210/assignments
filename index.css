@@ -197,7 +197,9 @@
   align-items: center;
   scroll-snap-align: center;
 }
-
+.sliderSub3 {
+  width: 150%;
+}
 .assignmentSubjects {
   width: 250px;
   height: 200px;
@@ -464,7 +466,7 @@
 
   .assignmentMain {
     width: 100%;
-    height: 120vh;
+    height: 100vh;
   }
 
   .assigned-title {
