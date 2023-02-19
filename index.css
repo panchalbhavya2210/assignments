@@ -473,7 +473,7 @@
 
   .assignmentMain {
     width: 100%;
-    height: 90vh;
+    height: 130vh;
   }
 
   .assigned-title {
@@ -617,5 +617,10 @@
 
     transform: translateY(0);
     opacity: 1;
+  }
+  .footerMain {
+    width: 100%;
+    height: 100vh;
+    background-color: #f00;
   }
 }
