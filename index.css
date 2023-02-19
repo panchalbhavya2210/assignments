@@ -1,11 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap");
-
+@font-face {
+  font-family: Valorax;
+  src: url("./favicon/Valorax-lg25V.otf");
+}
 * {
   margin: 0;
   padding: 0;
+}
+body {
   font-family: Plus Jakarta Sans;
 }
-
 .hamburger,
 .nav-block {
   display: none;
@@ -127,7 +131,8 @@
   box-shadow: 0 0 0;
 }
 
-.assignmentMain {
+.assignmentMain,
+.footerMain {
   width: 100%;
   height: 100vh;
   background-color: #ffffff;
@@ -292,7 +297,17 @@
   background-color: #02df90;
   border-radius: 10px;
 }
-
+.footerMain {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  margin: 0px 0 0 0;
+}
+.logoGamin {
+  font-size: 5rem;
+  margin: 20px 0 0 20px;
+  font-weight: bolder;
+}
 @media only screen and (max-width: 675px) {
   .line {
     width: 100%;
@@ -315,7 +330,9 @@
     background-size: 200% 100%;
     background-position: center;
   }
-
+  .assignment-text {
+    height: 70%;
+  }
   .assignment-text,
   .greet-user,
   .marginH1,
@@ -421,7 +438,7 @@
   .itemsNav {
     width: 100%;
     height: 60%;
-    margin: 0px 0 0 0;
+    margin: 20px 0 10px 0;
   }
 
   .navItems {
@@ -432,6 +449,7 @@
     align-items: center;
     transition: 0.3s;
     font-weight: bold;
+    margin: 10px 0;
   }
 
   .aniMationBar a {
@@ -509,14 +527,14 @@
   .sliderMain {
     width: 100%;
     height: 220px;
-    background-color: #fff;
     margin: 20px 0 20px 0;
     overflow-y: scroll;
     scroll-snap-type: x mandatory;
+    background-color: transparent;
   }
 
   .sliderSub {
-    width: 770%;
+    width: 760%;
     height: 220px;
     display: flex;
     justify-content: space-evenly;
@@ -524,7 +542,7 @@
     scroll-snap-align: center;
   }
   .sliderSub3 {
-    width: 520%;
+    width: 510%;
     height: 220px;
   }
   .assignmentSubjects {
@@ -621,7 +639,11 @@
   .footerMain {
     width: 100%;
     height: 100vh;
-    background-color: #f00;
-    margin: 200px 0 0 0;
+    background-color: rgb(255, 255, 255);
+    margin: 0px 0 0 0;
+  }
+  .logoGamin {
+    font-size: 2rem;
+    margin: 0 0 0 20px;
   }
 }
