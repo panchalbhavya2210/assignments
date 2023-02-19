@@ -2,7 +2,7 @@ let greetUser = document.getElementById("greet-user");
 
 let getDate = new Date();
 
-let day = getDate.getDay();
+let day = getDate.getDate();
 let hours = getDate.getHours();
 let year = getDate.getFullYear();
 let month = getDate.getMonth() + 1;
@@ -39,8 +39,14 @@ function updateTimer() {
   }
 }
 
-if (day < 10 && month < 10) {
-  dateShow.innerHTML = "0" + day + "/" + "0" + month + "/" + year;
+if (day < 10 || month < 10) {
+  dateShow.innerHTML = "0" + day + "/" + month + "/" + year;
+} else {
+  dateShow.innerHTML = day + "/" + month + "/" + year;
+}
+
+if (month < 10) {
+  dateShow.innerHTML = day + "/" + "0" + month + "/" + year;
 } else {
   dateShow.innerHTML = day + "/" + month + "/" + year;
 }
@@ -71,6 +77,7 @@ function runHams() {
   hamburger.classList.toggle("rotate");
   bars[0].classList.toggle("barOneToggle");
   bars[2].classList.toggle("barTwoToggle");
+  bars[1].classList.toggle("barOneOToggle");
 
   let animeBar = document.querySelectorAll(".aniMationBar");
 

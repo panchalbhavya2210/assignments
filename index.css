@@ -303,6 +303,8 @@
   .heightHeader {
     width: 100%;
     height: 100vh;
+    background-size: 120% 120%;
+    background-position: center;
   }
 
   .assignment-text,
@@ -345,7 +347,7 @@
   .bars {
     width: 35px;
     height: 2px;
-    background-color: #000;
+    background-color: #ffffff;
     margin: 9px 0 8px 2px;
     z-index: 5;
     position: relative;
@@ -389,13 +391,17 @@
   .barOneToggle {
     transform: translateX(20px) translateY(4px) rotate(45deg);
     width: 20px;
+    background-color: #000000;
   }
 
   .barTwoToggle {
     width: 20px;
     transform: translateX(20px) translateY(-4px) rotate(-45deg);
+    background-color: #000000;
   }
-
+  .barOneOToggle {
+    background-color: #000;
+  }
   .itemsNav {
     width: 100%;
     height: 60%;
@@ -455,20 +461,18 @@
   }
 
   .assigned-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bolder;
     width: 100%;
     height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 0.5px solid #000;
-    background: #f00;
   }
 
   .assigned-title p {
     text-align: center;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 0px;
   }
 
   .semFourAssignments {
@@ -478,7 +482,7 @@
   }
 
   .sem4 {
-    margin: 10px 0 0 30px;
+    margin: 10px 0 0 0px;
     font-size: 1.5rem;
     text-transform: uppercase;
   }
