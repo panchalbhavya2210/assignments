@@ -330,10 +330,14 @@
   .navigationBar {
     justify-content: flex-start;
   }
-
+  .fixedNav {
+    position: fixed;
+    z-index: 55;
+  }
   .logo-container {
     margin: 0 0 0 20px;
     font-size: 1.5rem;
+    z-index: 55;
   }
 
   .marginLogo {
@@ -367,7 +371,9 @@
   .nav-block {
     display: inline-block;
     width: 100%;
-    position: absolute;
+    position: fixed;
+    overflow: hidden;
+    z-index: 2;
     height: 100vh;
     background-color: #eaeaea;
     overflow: hidden;
