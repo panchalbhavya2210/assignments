@@ -466,7 +466,7 @@
 
   .assignmentMain {
     width: 100%;
-    height: 100vh;
+    height: 90vh;
   }
 
   .assigned-title {
@@ -534,7 +534,7 @@
     scroll-snap-align: center;
   }
 
-  /* .assignmentSectionSub {
+  .assignmentSectionSub {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -544,7 +544,7 @@
     color: #fff;
     backdrop-filter: blur(3px);
     overflow-x: scroll;
-  } */
+  }
 
   .subjectTitleHolder {
     font-size: 1.5rem;
