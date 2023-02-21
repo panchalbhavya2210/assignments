@@ -121,8 +121,8 @@ for (let i = 0; i < semFourCard.length; i++) {
 
 const option = {
   root: null,
-  rootMargin: "-100px 0px -100px 0px",
-  threshold: 0.3,
+  rootMargin: "-150px 0px -0px 0px",
+  threshold: 0.1,
 };
 
 const observerOne = new IntersectionObserver(function (entries) {
@@ -142,6 +142,10 @@ const observerOne = new IntersectionObserver(function (entries) {
       sliderMain[0].classList.remove("sliderMainSlide");
       sliderMain[1].classList.remove("sliderMainSlide");
       lineSub.classList.remove("lineInc");
+      semName[0].classList.remove("sem4Opq");
+      semName[1].classList.remove("sem4Opq");
+      lineSub.classList.remove("lineInc");
+      assignedtitle.classList.remove("assTitle");
     }
   });
 }, option);
@@ -197,6 +201,19 @@ function runUp() {
   });
 }
 
+function runToAss() {
+  if (window.innerWidth < 555) {
+    window.scrollTo({
+      top: 780,
+      behavior: "smooth",
+    });
+  } else {
+    window.scrollTo({
+      top: 610,
+      behavior: "smooth",
+    });
+  }
+}
 function scrollDown() {
   if (window.innerWidth < 555) {
     window.scrollTo({

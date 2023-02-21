@@ -199,9 +199,11 @@ body {
   background-color: transparent;
   opacity: 0;
   transition: 1s;
+  scale: 0;
 }
 .sliderMainSlide {
   opacity: 1;
+  scale: 1;
 }
 .sliderMain::-webkit-scrollbar,
 .assignmentSectionSub::-webkit-scrollbar {
@@ -347,6 +349,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+.navLinks {
+  width: 50%;
+  height: 100%;
+}
 .mainBlur {
   width: 90%;
   height: 75vh;
@@ -359,9 +365,12 @@ body {
   );
   backdrop-filter: blur(5px);
   border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .navigation {
-  margin: 10px 0 0 20px;
+  margin: 20px 0 0 20px;
   font-size: 2rem;
 }
 .lineNav {
@@ -372,8 +381,110 @@ body {
 }
 .navShortcut {
   display: flex;
+  width: 100%;
+  align-items: center;
+  margin: 15px 0 0 10px;
+  cursor: pointer;
+  position: relative;
+  font-weight: bold;
+}
+.navShortcut::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 32px;
+  height: 2px;
+  width: 0;
+  background-color: #000;
+  transition: all 0.3s;
+  border-radius: 10px;
+}
+.navShortcut:nth-child(2):hover.navShortcut::after {
+  width: 50px;
+}
+.navShortcut:nth-child(3):hover.navShortcut::after {
+  width: 100px;
+}
+.navShortcut:nth-child(4):hover.navShortcut::after {
+  width: 155px;
+}
+.navShortcut:nth-child(5):hover.navShortcut::after {
+  width: 120px;
+}
+.navShortcut:nth-child(6):hover.navShortcut::after {
+  width: 120px;
+}
+.navShortcut:nth-child(7):hover.navShortcut::after {
+  width: 150px;
+}
+.navShortcut:nth-child(8):hover.navShortcut::after {
+  width: 130px;
+}
+.navShortcut a {
+  text-decoration: none;
+  color: #000;
+}
+.logoAndQuote {
+  height: 100%;
+  margin: 60px 0 0 10px;
+}
+.logoAndQuote h1 {
+  font-size: 2rem;
+}
+.imgSmall {
+  width: 12px;
+  height: 12px;
+  margin: 0 10px 0 10px;
+}
+.greyOut {
+  color: #4d4d4d;
+}
+.myProfile {
+  height: 60%;
+  width: 100%;
+}
+.profile {
+  width: 100%;
+  height: 80px;
+  background-color: rgba(39, 39, 39, 0.409);
+  margin: 10px 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile img {
+  width: 50px;
+  height: 50px;
 }
 @media only screen and (max-width: 675px) {
+  .myProfile {
+    display: none;
+  }
+  .mainBlur {
+    display: unset;
+  }
+  .logoAndQuote {
+    height: 30%;
+    margin: 20px 0 0 10px;
+  }
+  .navigation {
+    margin: 10px 0 0 20px;
+    font-size: 1rem;
+  }
+  .lineNav {
+    width: 150px;
+    height: 5px;
+    background-color: #000;
+    border-radius: 10px;
+  }
+  .navShortcut {
+    /* display: flex; */
+    width: 150%;
+    align-items: center;
+    margin: 15px 0 0 10px;
+    cursor: pointer;
+  }
   .line {
     width: 100%;
     height: 2px;
