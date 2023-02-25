@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Plus+Jakarta+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400&family=Plus+Jakarta+Sans:wght@400;700&display=swap");
 @font-face {
   font-family: Valorax;
   src: url("./img/VerminVibesV-Zlg3.ttf");
@@ -152,9 +152,8 @@ body {
 }
 .assignMentSectionNew {
   width: 100%;
-  height: 200px;
-  background-color: rgb(255, 255, 255);
-  margin: 40px 0 0 0;
+  height: 100px;
+  margin: 20px 0 0 0;
 }
 .assignMentTitle {
   text-transform: uppercase;
@@ -167,8 +166,53 @@ body {
   border-bottom: 2px solid #f00;
   width: 800px;
 }
+.sliderMain {
+  width: 100%;
+  height: 250px;
+  overflow-x: scroll;
+}
+.sliderMain::-webkit-scrollbar {
+  display: none;
+}
+.sliderSub {
+  width: 250%;
+  height: 250px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.subject {
+  width: 280px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .lightRed {
   color: rgb(193, 1, 1);
+}
+.subjectMain {
+  font-size: 1.5rem;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+.subject:nth-child(1) {
+  color: rgb(88, 3, 3);
+  background: linear-gradient(45deg, rgb(255, 196, 196), rgb(255, 118, 118));
+}
+.subject:nth-child(2) {
+  color: rgb(145, 59, 2);
+  background: linear-gradient(45deg, rgb(251, 211, 171), rgb(254, 144, 54));
+}
+.subject:nth-child(3) {
+  color: rgb(255, 255, 255);
+  background: linear-gradient(45deg, rgb(251, 238, 171), rgb(254, 254, 54));
+}
+.subject:nth-child(4) {
+  background: linear-gradient(45deg, rgb(210, 251, 171), rgb(134, 254, 54));
 }
 
 .footerMain {
@@ -314,6 +358,22 @@ body {
   height: 50px;
 }
 @media only screen and (max-width: 675px) {
+  .sliderSub {
+    width: 800%;
+    height: 250px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .assignMentNew {
+    height: 120vh;
+  }
+  .assignMentSectionNew {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 270px;
+  }
   .assignMentTitle {
     display: block;
     top: 0;
