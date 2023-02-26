@@ -118,6 +118,18 @@ for (let i = 0; i < semFourCard.length; i++) {
 //     iteration += 1 / 3;
 //   }, 50);
 // };
+let subTogg = document.querySelectorAll(".subjectAndLins");
+let sliderMain = document.querySelector(".sliderMain");
+let sliderSub = document.querySelector(".sliderSub");
+
+for (let i = 0; i < subTogg.length; i++) {
+  subTogg[i].onclick = function () {
+    let val = subTogg[i].classList.value;
+    console.log(val);
+
+    subTogg[i].classList.toggle("subToggle");
+  };
+}
 
 const option = {
   root: null,
@@ -125,30 +137,30 @@ const option = {
   threshold: 0.1,
 };
 
-const observerOne = new IntersectionObserver(function (entries) {
-  entries.forEach((entriAssigned) => {
-    let sliderMain = document.querySelectorAll(".sliderMain");
-    let semName = document.querySelectorAll(".sem4");
-    let lineSub = document.querySelector(".lineSub");
-    let assignedtitle = document.querySelector(".assigned-title");
-    if (entriAssigned.isIntersecting) {
-      sliderMain[0].classList.add("sliderMainSlide");
-      sliderMain[1].classList.add("sliderMainSlide");
-      semName[0].classList.add("sem4Opq");
-      semName[1].classList.add("sem4Opq");
-      lineSub.classList.add("lineInc");
-      assignedtitle.classList.add("assTitle");
-    } else {
-      sliderMain[0].classList.remove("sliderMainSlide");
-      sliderMain[1].classList.remove("sliderMainSlide");
-      lineSub.classList.remove("lineInc");
-      semName[0].classList.remove("sem4Opq");
-      semName[1].classList.remove("sem4Opq");
-      lineSub.classList.remove("lineInc");
-      assignedtitle.classList.remove("assTitle");
-    }
-  });
-}, option);
+// const observerOne = new IntersectionObserver(function (entries) {
+//   entries.forEach((entriAssigned) => {
+//     let sliderMain = document.querySelectorAll(".sliderMain");
+//     let semName = document.querySelectorAll(".sem4");
+//     let lineSub = document.querySelector(".lineSub");
+//     let assignedtitle = document.querySelector(".assigned-title");
+//     if (entriAssigned.isIntersecting) {
+//       sliderMain[0].classList.add("sliderMainSlide");
+//       sliderMain[1].classList.add("sliderMainSlide");
+//       semName[0].classList.add("sem4Opq");
+//       semName[1].classList.add("sem4Opq");
+//       lineSub.classList.add("lineInc");
+//       assignedtitle.classList.add("assTitle");
+//     } else {
+//       sliderMain[0].classList.remove("sliderMainSlide");
+//       sliderMain[1].classList.remove("sliderMainSlide");
+//       lineSub.classList.remove("lineInc");
+//       semName[0].classList.remove("sem4Opq");
+//       semName[1].classList.remove("sem4Opq");
+//       lineSub.classList.remove("lineInc");
+//       assignedtitle.classList.remove("assTitle");
+//     }
+//   });
+// }, option);
 
 const assignment = document.querySelector(".assignment");
 

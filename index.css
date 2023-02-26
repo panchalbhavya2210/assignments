@@ -144,11 +144,15 @@ body {
   background-color: #000;
   overflow: hidden;
   font-size: 2rem;
-  color: #d42816;
 }
-.boldAss {
+.boldAss,
+.disNine {
   font-weight: bolder;
   font-size: 2.5rem;
+  color: #d42816;
+}
+.disNine {
+  font-weight: lighter;
 }
 .assignMentSectionNew {
   width: 100%;
@@ -163,56 +167,11 @@ body {
   display: flex;
   align-items: center;
   letter-spacing: 2px;
-  border-bottom: 2px solid #f00;
   width: 800px;
 }
-.sliderMain {
-  width: 100%;
-  height: 250px;
-  overflow-x: scroll;
-}
-.sliderMain::-webkit-scrollbar {
-  display: none;
-}
-.sliderSub {
-  width: 250%;
-  height: 250px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.subject {
-  width: 280px;
-  height: 200px;
-  background-color: #fff;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .lightRed {
   color: rgb(193, 1, 1);
-}
-.subjectMain {
-  font-size: 1.5rem;
-  color: #000;
-  text-transform: uppercase;
-  font-weight: bolder;
-}
-.subject:nth-child(1) {
-  color: rgb(88, 3, 3);
-  background: linear-gradient(45deg, rgb(255, 196, 196), rgb(255, 118, 118));
-}
-.subject:nth-child(2) {
-  color: rgb(145, 59, 2);
-  background: linear-gradient(45deg, rgb(251, 211, 171), rgb(254, 144, 54));
-}
-.subject:nth-child(3) {
-  color: rgb(255, 255, 255);
-  background: linear-gradient(45deg, rgb(251, 238, 171), rgb(254, 254, 54));
-}
-.subject:nth-child(4) {
-  background: linear-gradient(45deg, rgb(210, 251, 171), rgb(134, 254, 54));
 }
 
 .footerMain {
@@ -358,21 +317,31 @@ body {
   height: 50px;
 }
 @media only screen and (max-width: 675px) {
+  .sliderMain {
+    width: 100%;
+    height: 100px;
+    overflow-x: scroll;
+    transition: all 0.5s;
+  }
   .sliderSub {
-    width: 800%;
-    height: 250px;
+    width: 850%;
+    height: 100px;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: space-around;
   }
-  .assignMentNew {
-    height: 120vh;
+  .subjectAndLins {
+    width: 300px;
+    height: 70px;
+    background-color: rgb(37, 37, 37);
+    border-radius: 50px;
+    border: 1px solid gray;
+    transition: 0.5s;
   }
-  .assignMentSectionNew {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 270px;
+  .subToggle {
+    height: 290px;
+  }
+  .topToggle {
+    height: 300px;
   }
   .assignMentTitle {
     display: block;
