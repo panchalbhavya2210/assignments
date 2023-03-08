@@ -92,7 +92,8 @@ for (let i = 0; i < semFourCard.length; i++) {
   });
 }
 
-// let dochoster = document.querySelector(".docLogo");
+// let dochoster = document.querySelector
+// (".docLogo");
 
 // dochoster.onclick = (event) => {
 //   let iteration = 0;
@@ -124,10 +125,10 @@ let sliderSub = document.querySelector(".sliderSub");
 
 for (let i = 0; i < subTogg.length; i++) {
   subTogg[i].onclick = function () {
-    let val = subTogg[i].classList.value;
-    console.log(val);
-
     subTogg[i].classList.toggle("subToggle");
+
+    sliderMain.classList.add("topToggle");
+    sliderSub.classList.add("topToggle");
   };
 }
 

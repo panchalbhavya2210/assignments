@@ -336,9 +336,26 @@ body {
     border-radius: 50px;
     border: 1px solid gray;
     transition: 0.5s;
+    overflow: hidden;
   }
   .subToggle {
     height: 290px;
+    border-radius: 20px;
+    border: 1px solid gray;
+  }
+  .subjectMainToggle {
+    width: 100%;
+    height: 70px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .subName {
+    font-size: 1.3rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin: 0 0 0 10px;
   }
   .topToggle {
     height: 300px;

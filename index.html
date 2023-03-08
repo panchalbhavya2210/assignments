@@ -173,15 +173,60 @@
         <div class="assignMentSectionNew">
           <div class="sliderMain">
             <div class="sliderSub">
-              <div class="subjectAndLins"></div>
-              <div class="subjectAndLins"></div>
-              <div class="subjectAndLins"></div>
-              <div class="subjectAndLins"></div>
-              <div class="subjectAndLins"></div>
-              <div class="subjectAndLins"></div>
-              <div class="subjectAndLins"></div>
-              <div class="subjectAndLins"></div>
-              <div class="subjectAndLins"></div>
+              <div class="subjectAndLins">
+                <div class="subjectMainToggle">
+                  <div class="subName">Java Programming</div>
+                  <div class="assignedArrow"></div>
+                </div>
+              </div>
+              <div class="subjectAndLins">
+                <div class="subjectMainToggle">
+                  <div class="subName"></div>
+                  <div class="assignedArrow"></div>
+                </div>
+              </div>
+              <div class="subjectAndLins">
+                <div class="subjectMainToggle">
+                  <div class="subName"></div>
+                  <div class="assignedArrow"></div>
+                </div>
+              </div>
+              <div class="subjectAndLins">
+                <div class="subjectMainToggle">
+                  <div class="subName"></div>
+                  <div class="assignedArrow"></div>
+                </div>
+              </div>
+              <div class="subjectAndLins">
+                <div class="subjectMainToggle">
+                  <div class="subName"></div>
+                  <div class="assignedArrow"></div>
+                </div>
+              </div>
+              <div class="subjectAndLins">
+                <div class="subjectMainToggle">
+                  <div class="subName"></div>
+                  <div class="assignedArrow"></div>
+                </div>
+              </div>
+              <div class="subjectAndLins">
+                <div class="subjectMainToggle">
+                  <div class="subName"></div>
+                  <div class="assignedArrow"></div>
+                </div>
+              </div>
+              <div class="subjectAndLins">
+                <div class="subjectMainToggle">
+                  <div class="subName"></div>
+                  <div class="assignedArrow"></div>
+                </div>
+              </div>
+              <div class="subjectAndLins">
+                <div class="subjectMainToggle">
+                  <div class="subName"></div>
+                  <div class="assignedArrow"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1064,6 +1109,99 @@
       </footer>
     </section>
 
+    <section>
+      <div class="trialForm">
+        <input type="email" name="" id="email" value="a@gmail.com" />
+        <input type="password" name="" id="pass" value="123456" />
+        <input type="text" name="" id="name" value="plsssssssssssss" />
+      </div>
+      <button id="regi">Regiister</button>
+      <button id="login">Login</button>
+    </section>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+        update,
+      } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCLF4lvga3Oj3-s5eZIHnp6f84G88sM0GU",
+        authDomain: "dochoster-monark.firebaseapp.com",
+        databaseURL: "https://dochoster-monark-default-rtdb.firebaseio.com",
+        projectId: "dochoster-monark",
+        storageBucket: "dochoster-monark.appspot.com",
+        messagingSenderId: "616251856939",
+        appId: "1:616251856939:web:4680cba5f4ee2d52a0f26e",
+        measurementId: "G-QBFNQZCH81",
+      };
+
+      // Initialize Firebase
+      // const auth = getAuth();
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const analytics = getAnalytics(app);
+      const auth = getAuth();
+      // let database =
+
+      let regiBtn = document.getElementById("regi");
+      regi.onclick = function (e) {
+        let email = document.getElementById("email").value;
+        let pass = document.getElementById("pass").value;
+        let fullName = document.getElementById("name").value;
+
+        createUserWithEmailAndPassword(auth, email, pass)
+          .then((userCreds) => {
+            let user = userCreds.user;
+            alert("user done");
+
+            set(ref(database, "users/" + user.uid), {
+              username: fullName,
+              email: email,
+            });
+          })
+          .catch(function (error) {
+            let code = error.code;
+            let errordet = error.message;
+
+            alert(code + errordet);
+          });
+      };
+
+      let loginUser = document.getElementById("login");
+
+      loginUser.onclick = function () {
+        let email = document.getElementById("email").value;
+        let pass = document.getElementById("pass").value;
+
+        signInWithEmailAndPassword(auth, email, pass)
+          .then((userCreds) => {
+            const user = userCreds.user;
+
+            const date = new Date();
+
+            update(ref(database, "users/" + user.uid), {
+              last_login: date,
+            });
+            alert("user logged in");
+          })
+          .catch(function (error) {
+            let code = error.code;
+            let errordet = error.message;
+
+            alert(code + errordet);
+          });
+      };
+    </script>
     <script src="index.js"></script>
   </body>
 </html>
