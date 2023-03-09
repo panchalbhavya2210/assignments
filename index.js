@@ -122,6 +122,8 @@ for (let i = 0; i < semFourCard.length; i++) {
 let subTogg = document.querySelectorAll(".subjectAndLins");
 let sliderMain = document.querySelector(".sliderMain");
 let sliderSub = document.querySelector(".sliderSub");
+let assignedArrow = document.querySelectorAll(".assignedArrow");
+let circleLogo = document.querySelectorAll(".circleLogo");
 
 for (let i = 0; i < subTogg.length; i++) {
   subTogg[i].onclick = function () {
@@ -129,6 +131,8 @@ for (let i = 0; i < subTogg.length; i++) {
 
     sliderMain.classList.add("topToggle");
     sliderSub.classList.add("topToggle");
+    assignedArrow[i].classList.toggle("rotArr");
+    circleLogo[i].classList.toggle("bordRad");
   };
 }
 
