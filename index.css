@@ -474,10 +474,11 @@ body {
   .navigationBar {
     justify-content: flex-start;
   }
-  .fixedNav {
-    position: fixed;
-    z-index: 55;
-  }
+  /* .fixedNav {
+    position: relative;
+    z-index: 55555555;
+    top: 0;
+  } */
   .logo-container {
     margin: 0 0 0 20px;
     font-size: 1.5rem;
@@ -489,12 +490,14 @@ body {
   }
 
   .hamburger {
+    position: relative;
     display: block;
     width: 40px;
     height: 40px;
     margin: 0 0 0 20px;
     cursor: pointer;
     transition: 0.5s;
+    z-index: 55;
   }
 
   .items {
@@ -516,9 +519,11 @@ body {
     display: inline-block;
     width: 100%;
     position: fixed;
+    bottom: 0;
+    left: 0;
     overflow: hidden;
     z-index: 2;
-    height: 100vh;
+    height: 90vh;
     background-color: #eaeaea;
     overflow: hidden;
     margin: 0 0 0 -100%;
@@ -526,6 +531,7 @@ body {
   }
 
   .navToggle {
+    /* position: fixed; */
     margin: 0;
   }
 
@@ -551,16 +557,16 @@ body {
   .barOneToggle {
     transform: translateX(20px) translateY(4px) rotate(45deg);
     width: 20px;
-    background-color: #000000;
+    /* background-color: #000000; */
   }
 
   .barTwoToggle {
     width: 20px;
     transform: translateX(20px) translateY(-4px) rotate(-45deg);
-    background-color: #000000;
+    /* background-color: #000000; */
   }
   .barOneOToggle {
-    background-color: #000;
+    /* background-color: #000; */
   }
   .itemsNav {
     width: 100%;

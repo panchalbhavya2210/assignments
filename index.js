@@ -72,6 +72,10 @@ function runHams() {
   bars[2].classList.toggle("barTwoToggle");
   bars[1].classList.toggle("barOneOToggle");
 
+  // let navigationBar = document.getElementById("navigationBar");
+
+  // navigationBar.classList.toggle("assFix");
+
   let positonNav = document.getElementById("positionNav");
 
   positonNav.classList.toggle("fixedNav");
