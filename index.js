@@ -66,11 +66,11 @@ let hamburger = document.querySelector(".hamburger");
 let navBlock = document.querySelector(".nav-block");
 
 function runHams() {
-  navBlock.classList.toggle("navToggle");
-  hamburger.classList.toggle("rotate");
-  bars[0].classList.toggle("barOneToggle");
-  bars[2].classList.toggle("barTwoToggle");
-  bars[1].classList.toggle("barOneOToggle");
+  navBlock.classList.add("navToggle");
+  hamburger.classList.add("rotate");
+  bars[0].classList.add("barOneToggle");
+  bars[2].classList.add("barTwoToggle");
+  bars[1].classList.add("barOneOToggle");
 
   // let navigationBar = document.getElementById("navigationBar");
 
@@ -78,12 +78,34 @@ function runHams() {
 
   let positonNav = document.getElementById("positionNav");
 
-  positonNav.classList.toggle("fixedNav");
+  positonNav.classList.add("fixedNav");
 
   let animeBar = document.querySelectorAll(".aniMationBar");
 
   for (let i = 0; i < 4; i++) {
-    animeBar[i].classList.toggle("toggBar");
+    animeBar[i].classList.add("toggBar");
+  }
+}
+
+function runOutHams() {
+  navBlock.classList.remove("navToggle");
+  hamburger.classList.remove("rotate");
+  bars[0].classList.remove("barOneToggle");
+  bars[2].classList.remove("barTwoToggle");
+  bars[1].classList.remove("barOneOToggle");
+
+  // let navigationBar = document.getElementById("navigationBar");
+
+  // navigationBar.classList.toggle("assFix");
+
+  let positonNav = document.getElementById("positionNav");
+
+  positonNav.classList.remove("fixedNav");
+
+  let animeBar = document.querySelectorAll(".aniMationBar");
+
+  for (let i = 0; i < 4; i++) {
+    animeBar[i].classList.remove("toggBar");
   }
 }
 
@@ -130,6 +152,10 @@ let assignedArrow = document.querySelectorAll(".assignedArrow");
 let circleLogo = document.querySelectorAll(".circleLogo");
 
 for (let i = 0; i < subTogg.length; i++) {
+  subTogg[0].classList.add("subToggle");
+  assignedArrow[0].classList.add("rotArr");
+  circleLogo[0].classList.add("bordRad");
+
   subTogg[i].onclick = function () {
     subTogg[i].classList.toggle("subToggle");
 

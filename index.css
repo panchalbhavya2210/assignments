@@ -318,7 +318,7 @@ body {
 }
 @media only screen and (max-width: 675px) {
   .assignMentNew {
-    height: 110vh;
+    height: 115vh;
   }
   .sliderMain {
     width: 100%;
@@ -355,7 +355,7 @@ body {
     justify-content: space-between;
   }
   .subName {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bolder;
     text-transform: uppercase;
     margin: 0 0 0 10px;
@@ -392,6 +392,28 @@ body {
   }
   .topToggle {
     height: 300px;
+  }
+  .lineDivider {
+    width: 100%;
+    height: 220px;
+    overflow: scroll;
+  }
+  .subjectSection {
+    width: 100%;
+    height: 60px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+  }
+  .subjectSection p {
+    margin: 0 0 0 20px;
+  }
+  .subjectSection img {
+    width: 30px;
+    height: 30px;
+    margin: 0 20px 0 0;
   }
   .assignMentTitle {
     display: block;
@@ -474,11 +496,11 @@ body {
   .navigationBar {
     justify-content: flex-start;
   }
-  /* .fixedNav {
+  .fixedNav {
     position: relative;
     z-index: 55555555;
     top: 0;
-  } */
+  }
   .logo-container {
     margin: 0 0 0 20px;
     font-size: 1.5rem;
@@ -490,14 +512,13 @@ body {
   }
 
   .hamburger {
-    position: relative;
     display: block;
     width: 40px;
     height: 40px;
     margin: 0 0 0 20px;
     cursor: pointer;
     transition: 0.5s;
-    z-index: 55;
+    z-index: 555;
   }
 
   .items {
@@ -523,7 +544,7 @@ body {
     left: 0;
     overflow: hidden;
     z-index: 2;
-    height: 90vh;
+    height: 100vh;
     background-color: #eaeaea;
     overflow: hidden;
     margin: 0 0 0 -100%;
@@ -531,11 +552,12 @@ body {
   }
 
   .navToggle {
-    /* position: fixed; */
     margin: 0;
+    z-index: 2;
   }
 
   .logo-container {
+    position: relative;
     width: 100%;
     height: 70px;
     display: flex;
@@ -553,7 +575,16 @@ body {
     transform: rotate(-180deg);
     margin: 5px 0 0 20px;
   }
-
+  .closeBars {
+    background-color: #000;
+  }
+  .closeMenu {
+    margin: 30px 0 0 20px;
+    color: #000;
+  }
+  .itemsNav p {
+    color: #000;
+  }
   .barOneToggle {
     transform: translateX(20px) translateY(4px) rotate(45deg);
     width: 20px;
