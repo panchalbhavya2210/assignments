@@ -197,9 +197,9 @@ const option = {
 //   });
 // }, option);
 
-const assignment = document.querySelector(".assignment");
+// const assignment = document.querySelector(".assignment");
 
-observerOne.observe(assignment);
+// observerOne.observe(assignment);
 
 let footerMain = document.querySelector(".footerMain");
 

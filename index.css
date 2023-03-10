@@ -57,6 +57,10 @@ body {
   justify-content: space-between;
   margin: 0 70px 0 0;
 }
+.items a {
+  color: #fff;
+  text-decoration: none;
+}
 
 .items .itemHover {
   cursor: pointer;
@@ -316,6 +320,111 @@ body {
   width: 50px;
   height: 50px;
 }
+.sliderMain::-webkit-scrollbar,
+.lineDivider::-webkit-scrollbar {
+  display: none;
+}
+.sliderMain {
+  width: 100%;
+  height: 300px;
+  overflow-x: scroll;
+  transition: all 0.5s;
+  margin: 60px 0 0 0;
+}
+.sliderSub {
+  width: 300%;
+  height: 300px;
+  display: flex;
+  justify-content: space-around;
+}
+.subjectAndLins {
+  width: 310px;
+  height: 70px;
+  background-color: rgb(37, 37, 37);
+  border-radius: 50px;
+  border: 1px solid gray;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.subToggle {
+  height: 290px;
+  border-radius: 20px;
+  border: 1px solid gray;
+}
+.subjectMainToggle {
+  width: 100%;
+  height: 70px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.subName {
+  font-size: 1rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+  margin: 0 0 0 10px;
+}
+.circleLogo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgb(0, 84, 99);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  margin: 0 0 0 5px;
+  font-weight: bolder;
+  transition: 0.5s;
+}
+.bordRad {
+  border-radius: 15px;
+}
+.assignedArrow {
+  transition: 0.5s;
+
+  margin: 0 5px 0 5px;
+}
+
+.arrDownSub {
+  width: 25px;
+  transform: rotate(90deg);
+  height: 25px;
+}
+.rotArr {
+  transform: rotate(180deg);
+}
+.topToggle {
+  height: 300px;
+}
+.lineDivider {
+  width: 100%;
+  height: 220px;
+  overflow: scroll;
+}
+.subjectSection {
+  width: 100%;
+  height: 60px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+}
+.subjectSection p {
+  margin: 0 0 0 20px;
+}
+.subjectSection img {
+  width: 30px;
+  height: 30px;
+  margin: 0 20px 0 0;
+}
+.lineDivider a {
+  color: #fff;
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 675px) {
   .assignMentNew {
     height: 100vh;
