@@ -7,6 +7,11 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --pallet: #07add4;
+  --font-color: #07add4;
+  --font-color-dark: #038cab;
+}
 body {
   font-family: Plus Jakarta Sans;
   color: #fff;
@@ -26,8 +31,9 @@ body {
   width: 100%;
   height: 100vh;
   /* background-color: rgb(231, 231, 231); */
-  background-image: url("./img/mike-u-JuJYPgv4Rag-unsplash.jpg");
-  background-size: 100% 100%;
+  /* background-image: url("./img/mike-u-JuJYPgv4Rag-unsplash.jpg"); */
+  background-image: url("./img/andreas-gucklhorn-mawU2PoJWfU-unsplash.jpg");
+  background-size: 100% 140%;
   color: #fff;
   z-index: 1;
   position: relative;
@@ -70,8 +76,8 @@ body {
 }
 
 .itemHover:hover {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--pallet);
+  color: #000;
 }
 
 .hero-section {
@@ -108,7 +114,7 @@ body {
 .line {
   width: 100%;
   height: 2px;
-  background-color: #fc8581;
+  background-color: var(--pallet);
   margin: 10px 0 10px 0;
   border-radius: 10px;
 }
@@ -129,7 +135,7 @@ body {
   height: 40px;
   border: 0.1px solid #000;
   outline: none;
-  background-color: #fc8581;
+  background-color: var(--pallet);
   font-size: 1.5rem;
   box-shadow: 6px 6px 1px #464646;
   border-radius: 3px;
@@ -143,7 +149,8 @@ body {
   box-shadow: 0 0 0;
 }
 .assignMentNew {
-  height: 120vh;
+  position: relative;
+  height: 100vh;
   width: 100%;
   background-color: #000;
   overflow: hidden;
@@ -153,15 +160,17 @@ body {
 .disNine {
   font-weight: bolder;
   font-size: 2.5rem;
-  color: #d42816;
+  color: var(--font-color-dark);
 }
 .disNine {
   font-weight: lighter;
 }
 .assignMentSectionNew {
+  position: relative;
   width: 100%;
   height: 300px;
   margin: 20px 0 20px 0;
+  z-index: 333;
 }
 .assignMentTitle {
   text-transform: uppercase;
@@ -175,7 +184,7 @@ body {
 }
 
 .lightRed {
-  color: rgb(193, 1, 1);
+  color: var(--font-color);
 }
 
 .footerMain {
@@ -195,7 +204,7 @@ body {
 .lineDate {
   width: 150px;
   height: 2px;
-  background-color: #fc8581;
+  background-color: var(--pallet);
   border-radius: 10px;
 }
 .footerMain {
@@ -224,20 +233,21 @@ body {
   width: 90%;
   height: 75vh;
   /* background: linear-gradient(45deg, #144272, #2c74b3, #205295); */
-  background: linear-gradient(45deg, #350706, #9c1d16, #d42816);
+  background: linear-gradient(45deg, #051912, #0186a3, #3eb0ee);
+  /* background: linear-gradient(45deg, #350706, #9c1d16, #d42816); */
   backdrop-filter: blur(5px);
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 10px #d42816;
+  box-shadow: 0 0 10px #051912;
 }
 .navigation {
   margin: 20px 0 0 20px;
   font-size: 2rem;
 }
 .lineNav {
-  width: 290px;
+  width: 300px;
   height: 5px;
   background-color: #ffffff;
   border-radius: 10px;
@@ -300,7 +310,7 @@ body {
   margin: 0 10px 0 10px;
 }
 .greyOut {
-  color: #dbdbdb;
+  color: #929292;
 }
 .myProfile {
   height: 60%;
@@ -330,6 +340,8 @@ body {
   overflow-x: scroll;
   transition: all 0.5s;
   margin: 60px 0 0 0;
+  scroll-snap-type: x mandatory;
+  z-index: 220;
 }
 .sliderSub {
   width: 300%;
@@ -340,11 +352,14 @@ body {
 .subjectAndLins {
   width: 310px;
   height: 70px;
-  background-color: rgb(37, 37, 37);
+  background-color: rgba(37, 37, 37, 0.724);
   border-radius: 50px;
   border: 1px solid gray;
   transition: 0.5s;
   overflow: hidden;
+  cursor: pointer;
+  scroll-snap-align: center;
+  backdrop-filter: blur(20px);
 }
 .subToggle {
   height: 290px;
@@ -358,6 +373,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #3b3b3b00;
 }
 .subName {
   font-size: 1rem;
@@ -424,8 +440,30 @@ body {
   color: #fff;
   text-decoration: none;
 }
-
+.imageHolder {
+  width: 100%;
+  height: 500px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+.students {
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  top: 0;
+  transform: scale(2.3);
+}
 @media only screen and (max-width: 675px) {
+  .assignMentSectionNew {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin: 20px 0 20px 0;
+    z-index: 0;
+  }
   .assignMentNew {
     height: 100vh;
   }
@@ -434,6 +472,7 @@ body {
     height: 300px;
     overflow-x: scroll;
     transition: all 0.5s;
+    z-index: 0;
   }
   .sliderSub {
     width: 830%;
@@ -558,7 +597,7 @@ body {
   .lineNav {
     width: 150px;
     height: 5px;
-    background-color: #000;
+    background-color: #ffffff;
     border-radius: 10px;
   }
   .navShortcut {
@@ -585,7 +624,7 @@ body {
   .heightHeader {
     width: 100%;
     height: 100vh;
-    background-size: 200% 100%;
+    background-size: 300% 100%;
     background-position: center;
   }
   .assignment-text {
@@ -654,10 +693,11 @@ body {
     overflow: hidden;
     z-index: 2;
     height: 100vh;
-    background-color: #eaeaea;
+    background-color: #eaeaeaa0;
     overflow: hidden;
     margin: 0 0 0 -100%;
     transition: 0.4s;
+    backdrop-filter: blur(20px);
   }
 
   .navToggle {
@@ -688,7 +728,7 @@ body {
     background-color: #000;
   }
   .closeMenu {
-    margin: 30px 0 0 20px;
+    margin: 150px 0 0 20px;
     color: #000;
   }
   .itemsNav p {
@@ -816,6 +856,6 @@ body {
   }
   .logoGamin {
     font-size: 2.4rem;
-    margin: 0px 0 0 20px;
+    margin: 50px 0 0 20px;
   }
 }
