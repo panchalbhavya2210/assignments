@@ -172,40 +172,45 @@ const option = {
   threshold: 0.1,
 };
 
-// const observerOne = new IntersectionObserver(function (entries) {
-//   entries.forEach((entriAssigned) => {
-//     let sliderMain = document.querySelectorAll(".sliderMain");
-//     let semName = document.querySelectorAll(".sem4");
-//     let lineSub = document.querySelector(".lineSub");
-//     let assignedtitle = document.querySelector(".assigned-title");
-//     if (entriAssigned.isIntersecting) {
-//       sliderMain[0].classList.add("sliderMainSlide");
-//       sliderMain[1].classList.add("sliderMainSlide");
-//       semName[0].classList.add("sem4Opq");
-//       semName[1].classList.add("sem4Opq");
-//       lineSub.classList.add("lineInc");
-//       assignedtitle.classList.add("assTitle");
-//     } else {
-//       sliderMain[0].classList.remove("sliderMainSlide");
-//       sliderMain[1].classList.remove("sliderMainSlide");
-//       lineSub.classList.remove("lineInc");
-//       semName[0].classList.remove("sem4Opq");
-//       semName[1].classList.remove("sem4Opq");
-//       lineSub.classList.remove("lineInc");
-//       assignedtitle.classList.remove("assTitle");
-//     }
-//   });
-// }, option);
+const observerOne = new IntersectionObserver(function (entries) {
+  entries.forEach((entriAssigned) => {
+    let students = document.querySelector(".students");
+    let boldAss = document.querySelector(".boldAss");
+    let lightRed = document.querySelector(".lightRed");
+    let disNine = document.querySelector(".disNine");
+    let allDisSub = document.querySelectorAll(".subjectAndLins");
 
-// const assignment = document.querySelector(".assignment");
+    if (entriAssigned.isIntersecting == true) {
+      students.classList.add("waveToggle");
+      boldAss.classList.add("textToggle");
+      lightRed.classList.add("textToggle");
+      disNine.classList.add("textToggle");
+      for (let i = 0; i < allDisSub.length; i++) {
+        allDisSub[i].classList.add("subToggleOpacity");
+      }
+    } else {
+      students.classList.remove("waveToggle");
+      boldAss.classList.remove("textToggle");
+      lightRed.classList.remove("textToggle");
+      disNine.classList.remove("textToggle");
+      for (let i = 0; i < 4; i++) {
+        allDisSub[i].classList.remove("subToggleOpacity");
+      }
+    }
+  });
+}, option);
 
-// observerOne.observe(assignment);
+const assignment = document.querySelector(".assignMentNew");
+
+observerOne.observe(assignment);
 
 let footerMain = document.querySelector(".footerMain");
 
 const observerTwo = new IntersectionObserver(function (entries, event) {
   entries.forEach((entriAssigned) => {
+    let mainBlurToggle = document.querySelector(".mainBlur");
     if (entriAssigned.isIntersecting) {
+      mainBlurToggle.classList.add("mainTogg");
       const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
       let interval = null;
@@ -234,6 +239,8 @@ const observerTwo = new IntersectionObserver(function (entries, event) {
         iteration += 1 / 3;
       }, 50);
     } else {
+      mainBlurToggle.classList.remove("mainTogg");
+
       console.log("neeeeeeeeeeeeeigh");
     }
   });
