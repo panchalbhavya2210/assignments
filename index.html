@@ -492,18 +492,18 @@
       </footer>
     </section>
 
-    <section>
+    <!-- <section>
       <div class="trialForm">
         <input type="email" name="" id="email" value="a@gmail.com" />
         <input type="password" name="" id="pass" value="123456" />
         <input type="text" name="" id="name" value="Gg" />
+        <input type="file" name="files[]" id="fileUpload" />
       </div>
       <button id="regi">Regiister</button>
+      <button id="upImage">Upload Image</button>
       <button id="login">Login</button>
     </section>
     <script type="module">
-      // Import the functions you need from the SDKs you need
-
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
       import {
         getDatabase,
@@ -511,6 +511,14 @@
         ref,
         update,
       } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+
+      import {
+        getStorage,
+        ref as sRef,
+        uploadBytes,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
+
       import {
         getAuth,
         createUserWithEmailAndPassword,
@@ -535,6 +543,15 @@
       const database = getDatabase(app);
       const analytics = getAnalytics(app);
       const auth = getAuth();
+      const storage = getStorage(app, "gs://dochoster-monark.appspot.com");
+
+      // const errorMsgElement = document.querySelector("span#errorMsg");
+
+      // let fileName = document.getElementById("fileUpload");
+
+      // getDownloadURL(sRef).then((url) => {
+      //   console.log(url);
+      // });
       // let database =
 
       let regiBtn = document.getElementById("regi");
@@ -552,6 +569,20 @@
               username: fullName,
               email: email,
             });
+
+            let fileName = document.getElementById("fileUpload").files[0];
+            let fileNameMain = document.getElementById("fileUpload").value;
+
+            const storageRef = sRef(
+              storage,
+              `${user.uid}/${fileNameMain}` + fileName
+            );
+
+            let imgUpProc = uploadBytes(storageRef, fileName).then(
+              (snapshot) => {
+                console.log("Uploaded a blob or file!");
+              }
+            );
           })
           .catch(function (error) {
             let code = error.code;
@@ -569,6 +600,7 @@
         signInWithEmailAndPassword(auth, email, pass)
           .then((userCreds) => {
             const user = userCreds.user;
+            console.log(user);
 
             const date = new Date();
 
@@ -576,7 +608,16 @@
               last_login: date,
             });
             alert("user logged in");
+            var getImageUrl = function () {
+              var stRef = sRef(storage);
+
+              let getURL = stRef(user.uid + ".jpg").getDownloadURL();
+
+              console.log(getURL);
+            };
+            getImageUrl();
           })
+
           .catch(function (error) {
             let code = error.code;
             let errordet = error.message;
@@ -584,7 +625,7 @@
             alert(code + errordet);
           });
       };
-    </script>
+    </script> -->
     <script src="index.js"></script>
   </body>
 </html>
