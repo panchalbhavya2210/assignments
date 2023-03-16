@@ -509,7 +509,7 @@
       </footer>
     </section>
 
-    <!-- <section>
+    <section>
       <div class="trialForm">
         <input type="email" name="" id="email" value="a@gmail.com" />
         <input type="password" name="" id="pass" value="123456" />
@@ -519,7 +519,7 @@
       <button id="regi">Regiister</button>
       <button id="upImage">Upload Image</button>
       <button id="login">Login</button>
-    </section> -->
+    </section>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
       import {
@@ -532,7 +532,7 @@
       import {
         getStorage,
         ref as sRef,
-        uploadBytes,
+        uploadBytesResumable,
         getDownloadURL,
       } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
 
@@ -562,15 +562,6 @@
       const auth = getAuth();
       const storage = getStorage(app, "gs://dochoster-monark.appspot.com");
 
-      // const errorMsgElement = document.querySelector("span#errorMsg");
-
-      // let fileName = document.getElementById("fileUpload");
-
-      // getDownloadURL(sRef).then((url) => {
-      //   console.log(url);
-      // });
-      // let database =
-
       let regiBtn = document.getElementById("regi");
       regi.onclick = function (e) {
         let email = document.getElementById("email").value;
@@ -590,16 +581,38 @@
             let fileName = document.getElementById("fileUpload").files[0];
             let fileNameMain = document.getElementById("fileUpload").value;
 
-            const storageRef = sRef(
-              storage,
-              `${user.uid}/${fileNameMain}` + fileName
+            const metaData = {
+              contentType: fileName.type,
+            };
+
+            const storageRef = sRef(storage, `$/${fileNameMain}` + fileName);
+
+            const UploadTask = uploadBytesResumable(
+              storageRef,
+              fileName,
+              metaData
             );
 
-            let imgUpProc = uploadBytes(storageRef, fileName).then(
+            UploadTask.on(
+              "state_changed",
               (snapshot) => {
-                console.log("Uploaded a blob or file!");
+                console.log("WHoooo");
+              },
+              (error) => {
+                console.log(error);
+              },
+              () => {
+                getDownloadURL(UploadTask.snapshot.ref).then((downnloadURL) => {
+                  saveToDB(downnloadURL);
+                });
               }
             );
+
+            // let imgUpProc = uploadBytes(storageRef, fileName).then(
+            //   (snapshot) => {
+            //     console.log("Uploaded a blob or file!");
+            //   }
+            // );
           })
           .catch(function (error) {
             let code = error.code;
@@ -607,6 +620,16 @@
             alert(code + errordet);
           });
       };
+
+      function saveToDB(url) {
+        set(ref(database, "users/"), {
+          ImageUrl: url,
+        });
+      }
+
+      let upImg = document.getElementById("upImage");
+
+      upImg.onclick = function () {};
 
       let loginUser = document.getElementById("login");
 
