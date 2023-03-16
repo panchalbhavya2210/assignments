@@ -573,10 +573,10 @@
             let user = userCreds.user;
             alert("user done");
 
-            set(ref(database, "users/" + user.uid), {
-              username: fullName,
-              email: email,
-            });
+            // set(ref(database, "users/" + user.uid), {
+            //   username: fullName,
+            //   email: email,
+            // });
 
             let fileName = document.getElementById("fileUpload").files[0];
             let fileNameMain = document.getElementById("fileUpload").value;
@@ -585,7 +585,10 @@
               contentType: fileName.type,
             };
 
-            const storageRef = sRef(storage, `$/${fileNameMain}` + fileName);
+            const storageRef = sRef(
+              storage,
+              `${user.uid}/${fileNameMain}` + fileName
+            );
 
             const UploadTask = uploadBytesResumable(
               storageRef,
@@ -603,7 +606,7 @@
               },
               () => {
                 getDownloadURL(UploadTask.snapshot.ref).then((downnloadURL) => {
-                  saveToDB(downnloadURL);
+                  saveToDB(downnloadURL, fullName, email);
                 });
               }
             );
@@ -621,8 +624,16 @@
           });
       };
 
-      function saveToDB(url) {
-        set(ref(database, "users/"), {
+      function saveToDB(url, fullName, email) {
+        let emailN = document.getElementById("email").value;
+        let pass = document.getElementById("pass").value;
+        let fullNameN = document.getElementById("name").value;
+
+        let user = auth.currenUser;
+
+        set(ref(database, "users", user.uid), {
+          username: fullNameN,
+          email: emailN,
           ImageUrl: url,
         });
       }
