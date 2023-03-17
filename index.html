@@ -511,10 +511,11 @@
 
     <!-- <section>
       <div class="trialForm">
-        <input type="email" name="" id="email" value="a@gmail.com" />
+        <input type="email" name="" id="email" value="bhavya@gmail.com" />
         <input type="password" name="" id="pass" value="123456" />
         <input type="text" name="" id="name" value="Gg" />
         <input type="file" name="files[]" id="fileUpload" />
+        <img src="" alt="no-image" id="thisImage" srcset="" />
       </div>
       <button id="regi">Regiister</button>
       <button id="upImage">Upload Image</button>
@@ -527,6 +528,8 @@
         set,
         ref,
         update,
+        child,
+        get,
       } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
 
       import {
@@ -606,7 +609,7 @@
               },
               () => {
                 getDownloadURL(UploadTask.snapshot.ref).then((downnloadURL) => {
-                  saveToDB(downnloadURL, fullName, email);
+                  saveToDB(`${downnloadURL},${fullName},${email}`);
                 });
               }
             );
@@ -625,17 +628,40 @@
       };
 
       function saveToDB(url, fullName, email) {
+        let userId = getAuth();
+        // console.log(userId);
+        let uId = userId.currentUser.uid;
+
         let emailN = document.getElementById("email").value;
         let pass = document.getElementById("pass").value;
         let fullNameN = document.getElementById("name").value;
 
-        let user = auth.currenUser;
-
-        set(ref(database, "users", user.uid), {
+        set(ref(database, "users/" + uId), {
           username: fullNameN,
           email: emailN,
           ImageUrl: url,
         });
+      }
+      function readToDB(url, fullName, email) {
+        const dbRef = ref(getDatabase());
+        let userId = getAuth();
+        // console.log(userId);
+        let uId = userId.currentUser.uid;
+        get(child(dbRef, `users/${uId}`))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              console.log(snapshot.val());
+              // let imageUrl = snapshot.val().imageUrl;
+
+              let imgUrl = document.getElementById("thisImage");
+              imgUrl.src = snapshot.val().ImageUrl;
+            } else {
+              console.log("No data available");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       }
 
       let upImg = document.getElementById("upImage");
@@ -650,23 +676,7 @@
 
         signInWithEmailAndPassword(auth, email, pass)
           .then((userCreds) => {
-            const user = userCreds.user;
-            console.log(user);
-
-            const date = new Date();
-
-            update(ref(database, "users/" + user.uid), {
-              last_login: date,
-            });
-            alert("user logged in");
-            var getImageUrl = function () {
-              var stRef = sRef(storage);
-
-              let getURL = stRef(user.uid + ".jpg").getDownloadURL();
-
-              console.log(getURL);
-            };
-            getImageUrl();
+            readToDB();
           })
 
           .catch(function (error) {
