@@ -509,18 +509,25 @@
       </footer>
     </section>
 
-    <!-- <section>
-      <div class="trialForm">
+    <section>
+      <!-- <div class="trialForm">
         <input type="email" name="" id="email" value="bhavya@gmail.com" />
         <input type="password" name="" id="pass" value="123456" />
         <input type="text" name="" id="name" value="Gg" />
         <input type="file" name="files[]" id="fileUpload" />
-        <img src="" alt="no-image" id="thisImage" srcset="" />
+        <h1 id="usernameInner" style="color: #000"></h1>
+        <img
+          src=""
+          style="width: 100px; height: 100px"
+          alt="no-image"
+          id="thisImage"
+          srcset=""
+        />
       </div>
       <button id="regi">Regiister</button>
       <button id="upImage">Upload Image</button>
-      <button id="login">Login</button>
-    </section> -->
+      <button id="login">Login</button> -->
+    </section>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
       import {
@@ -613,12 +620,6 @@
                 });
               }
             );
-
-            // let imgUpProc = uploadBytes(storageRef, fileName).then(
-            //   (snapshot) => {
-            //     console.log("Uploaded a blob or file!");
-            //   }
-            // );
           })
           .catch(function (error) {
             let code = error.code;
@@ -654,7 +655,10 @@
               // let imageUrl = snapshot.val().imageUrl;
 
               let imgUrl = document.getElementById("thisImage");
+              let fullNameVal = document.getElementById("usernameInner");
+              console.log(fullNameVal);
               imgUrl.src = snapshot.val().ImageUrl;
+              fullNameVal.innerHTML = snapshot.val().username;
             } else {
               console.log("No data available");
             }
@@ -664,9 +668,53 @@
           });
       }
 
-      let upImg = document.getElementById("upImage");
+      function changeImage() {
+        let userId = getAuth();
+        let uId = userId.currentUser.uid;
+        let fileName = document.getElementById("fileUpload").files[0];
+        let fileNameMain = document.getElementById("fileUpload").value;
 
-      upImg.onclick = function () {};
+        const metaData = {
+          contentType: fileName.type,
+        };
+
+        const storageRef = sRef(storage, `${uId}/${fileNameMain}` + fileName);
+
+        const UploadTask = uploadBytesResumable(storageRef, fileName, metaData);
+
+        UploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            console.log(snapshot);
+          },
+          (error) => {
+            // console.log(error);
+          },
+          () => {
+            getDownloadURL(UploadTask.snapshot.ref).then((downnloadURL) => {
+              updateData(`${downnloadURL}`);
+            });
+          }
+        );
+      }
+      function updateData(url) {
+        changeImage();
+
+        console.log(url);
+        let userId = getAuth();
+        let uId = userId.currentUser.uid;
+        let fullNameN = document.getElementById("name").value;
+
+        update(ref(database, "users/" + uId), {
+          ImageUrl: url,
+          username: fullNameN,
+        });
+      }
+
+      let fileUpload = document.getElementById("upImage");
+      fileUpload.onclick = function () {
+        updateData();
+      };
 
       let loginUser = document.getElementById("login");
 
@@ -676,6 +724,7 @@
 
         signInWithEmailAndPassword(auth, email, pass)
           .then((userCreds) => {
+            // updateData();
             readToDB();
           })
 
