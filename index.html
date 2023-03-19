@@ -510,7 +510,7 @@
     </section>
 
     <section>
-      <!-- <div class="trialForm">
+      <div class="trialForm">
         <input type="email" name="" id="email" value="bhavya@gmail.com" />
         <input type="password" name="" id="pass" value="123456" />
         <input type="text" name="" id="name" value="Gg" />
@@ -526,7 +526,7 @@
       </div>
       <button id="regi">Regiister</button>
       <button id="upImage">Upload Image</button>
-      <button id="login">Login</button> -->
+      <button id="login">Login</button>
     </section>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
@@ -550,6 +550,8 @@
         getAuth,
         createUserWithEmailAndPassword,
         signInWithEmailAndPassword,
+        setPersistence,
+        browserSessionPersistence,
       } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
 
@@ -582,6 +584,8 @@
           .then((userCreds) => {
             let user = userCreds.user;
             alert("user done");
+
+            // sendCustomVerificationEmail(email, fullName, link);
 
             // set(ref(database, "users/" + user.uid), {
             //   username: fullName,
@@ -718,11 +722,34 @@
 
       let loginUser = document.getElementById("login");
 
+      setPersistence(auth, browserSessionPersistence)
+        .then(() => {
+          signInWithEmailAndPassword(auth, email, pass);
+          readToDB();
+
+          // .then((userCreds) => {
+          //   // updateData();
+          //   readToDB();
+          // })
+
+          // .catch(function (error) {
+          //   let code = error.code;
+          //   let errordet = error.message;
+
+          //   alert(code + errordet);
+          // });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
       loginUser.onclick = function () {
         let email = document.getElementById("email").value;
         let pass = document.getElementById("pass").value;
 
         signInWithEmailAndPassword(auth, email, pass)
+          // readToDB();
+
           .then((userCreds) => {
             // updateData();
             readToDB();
@@ -734,6 +761,7 @@
 
             alert(code + errordet);
           });
+        // readToDB();
       };
     </script>
     <script src="index.js"></script>
