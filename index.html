@@ -150,6 +150,17 @@
           >
             <div class="itemOne itemHover">Report Issue</div>
           </a>
+
+          <div class="itemOne">
+            <div class="circleProfile">
+              <img
+                src="./img/andreas-gucklhorn-mawU2PoJWfU-unsplash.jpg"
+                alt=""
+                srcset=""
+                id="profilePicHead"
+              />
+            </div>
+          </div>
         </div>
       </nav>
       <div class="hero-section">
@@ -166,7 +177,10 @@
           </div>
 
           <p class="greet-user">
-            Hey There ,<span id="greet-user">Good Evening</span>
+            Hey There , <span id="userNameHead"></span>&nbsp;<br /><span
+              id="greet-user"
+              >Good Evening</span
+            >
           </p>
           <h1 class="marginH1">Welcome To</h1>
           <h1 class="marginH1">Documents Hoster.</h1>
@@ -509,25 +523,48 @@
       </footer>
     </section>
 
-    <section>
-      <div class="trialForm">
-        <input type="email" name="" id="email" value="bhavya@gmail.com" />
-        <input type="password" name="" id="pass" value="123456" />
-        <input type="text" name="" id="name" value="Gg" />
-        <input type="file" name="files[]" id="fileUpload" />
-        <h1 id="usernameInner" style="color: #000"></h1>
-        <img
-          src=""
-          style="width: 100px; height: 100px"
-          alt="no-image"
-          id="thisImage"
-          srcset=""
+    <section class="trialForm">
+      <p class="formTitle">Sign Up Or Sign In</p>
+      <div class="inputFields">
+        <input
+          type="email"
+          name=""
+          id="email"
+          value="bhavya@gmail.com"
+          class="inpFields"
+          placeholder="Your Email"
+        />
+        <input
+          type="password"
+          name=""
+          id="pass"
+          value="123456"
+          class="inpFields"
+          placeholder="Your Password"
+        />
+        <input
+          type="text"
+          name=""
+          id="name"
+          value="Gg"
+          class="inpFields"
+          placeholder="Username"
+        />
+        <input
+          type="file"
+          name="files[]"
+          id="fileUpload"
+          class="inpFile"
+          placeholder="Choose An Image"
+          accept="image/jpeg, image/png"
         />
       </div>
-      <button id="regi">Regiister</button>
-      <button id="upImage">Upload Image</button>
+      <button id="regi">Sign Up</button>
       <button id="login">Login</button>
     </section>
+
+    <button id="upImage">Upload Image</button>
+
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
       import {
@@ -552,6 +589,9 @@
         signInWithEmailAndPassword,
         setPersistence,
         browserSessionPersistence,
+        sendEmailVerification,
+        GithubAuthProvider,
+        signInWithRedirect,
       } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
 
@@ -574,6 +614,10 @@
       const auth = getAuth();
       const storage = getStorage(app, "gs://dochoster-monark.appspot.com");
 
+      // const provider = new GithubAuthProvider();
+
+      // signInWithRedirect(auth, provider);
+
       let regiBtn = document.getElementById("regi");
       regi.onclick = function (e) {
         let email = document.getElementById("email").value;
@@ -583,7 +627,8 @@
         createUserWithEmailAndPassword(auth, email, pass)
           .then((userCreds) => {
             let user = userCreds.user;
-            alert("user done");
+
+            sendEmailVerification(user);
 
             // sendCustomVerificationEmail(email, fullName, link);
 
@@ -658,8 +703,8 @@
               console.log(snapshot.val());
               // let imageUrl = snapshot.val().imageUrl;
 
-              let imgUrl = document.getElementById("thisImage");
-              let fullNameVal = document.getElementById("usernameInner");
+              let imgUrl = document.getElementById("profilePicHead");
+              let fullNameVal = document.getElementById("userNameHead");
               console.log(fullNameVal);
               imgUrl.src = snapshot.val().ImageUrl;
               fullNameVal.innerHTML = snapshot.val().username;
@@ -689,7 +734,7 @@
         UploadTask.on(
           "state_changed",
           (snapshot) => {
-            console.log(snapshot);
+            // console.log(snapshot);
           },
           (error) => {
             // console.log(error);
