@@ -523,7 +523,7 @@
       </footer>
     </section>
 
-    <section class="trialForm">
+    <!-- <section class="trialForm">
       <p class="formTitle">Sign Up Or Sign In</p>
       <div class="inputFields">
         <input
@@ -592,6 +592,8 @@
         sendEmailVerification,
         GithubAuthProvider,
         signInWithRedirect,
+        inMemoryPersistence,
+        browserLocalPersistence,
       } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
 
@@ -636,7 +638,9 @@
             //   username: fullName,
             //   email: email,
             // });
-
+            alert(
+              "Your Account Is Successfully Created, Please Refresh The Page To Auto Log In."
+            );
             let fileName = document.getElementById("fileUpload").files[0];
             let fileNameMain = document.getElementById("fileUpload").value;
 
@@ -675,6 +679,10 @@
             let errordet = error.message;
             alert(code + errordet);
           });
+        signInWithEmailAndPassword(auth, email, pass).then((userCreds) => {
+          // updateData();
+          readToDB();
+        });
       };
 
       function saveToDB(url, fullName, email) {
@@ -695,8 +703,10 @@
       function readToDB(url, fullName, email) {
         const dbRef = ref(getDatabase());
         let userId = getAuth();
+        console.log(userId);
         // console.log(userId);
         let uId = userId.currentUser.uid;
+
         get(child(dbRef, `users/${uId}`))
           .then((snapshot) => {
             if (snapshot.exists()) {
@@ -767,7 +777,7 @@
 
       let loginUser = document.getElementById("login");
 
-      setPersistence(auth, browserSessionPersistence)
+      setPersistence(auth, browserLocalPersistence)
         .then(() => {
           signInWithEmailAndPassword(auth, email, pass);
           readToDB();
@@ -808,7 +818,7 @@
           });
         // readToDB();
       };
-    </script>
+    </script> -->
     <script src="index.js"></script>
   </body>
 </html>
