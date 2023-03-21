@@ -1,3 +1,14 @@
+let arrayNew = [
+  {
+    java: {
+      0: 1,
+    },
+    database: {
+      0: 1,
+    },
+  },
+];
+
 let greetUser = document.getElementById("greet-user");
 
 let getDate = new Date();
