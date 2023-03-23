@@ -17,7 +17,7 @@ let day = getDate.getDate();
 let hours = getDate.getHours();
 let year = getDate.getFullYear();
 let month = getDate.getMonth() + 1;
-
+//1
 let dateShow = document.getElementById("dateShow");
 let time = document.getElementById("time");
 
