@@ -562,34 +562,38 @@
       </footer>
     </section>
     <!---->
-
+    <!-- 
     <section class="trialForm">
-      <p class="formTitle">Sign Up Or Sign In</p>
       <div class="inputFields">
+        <p class="formTitle">Sign Up</p>
+        <label for="email" class="labelSignUp">Email</label>
         <input
           type="email"
           name=""
           id="email"
-          value="bhavya@gmail.com"
+          value=""
           class="inpFields"
           placeholder="Your Email"
         />
+        <label for="pass" class="labelSignUp">Password</label>
         <input
           type="password"
           name=""
           id="pass"
-          value="123456"
+          value=""
           class="inpFields"
           placeholder="Your Password"
         />
+        <label for="name" class="labelSignUp">Username</label>
         <input
           type="text"
           name=""
           id="name"
-          value="Gg"
+          value=""
           class="inpFields"
           placeholder="Username"
         />
+        <label for="fileUpload" class="labelSignUp">Your Image : </label>
         <input
           type="file"
           name="files[]"
@@ -598,13 +602,13 @@
           placeholder="Choose An Image"
           accept="image/jpeg, image/png"
         />
+        <button class="regiBtn" id="regi">Sign Up</button>
       </div>
-      <button id="regi">Sign Up</button>
-      <button id="login">Login</button>
     </section>
+    <!-- <button id="login">Login</button> -->
 
     <button id="upImage">Upload Image</button>
-    <button id="gitLogin">GitLogin</button>
+    <button id="gitLogin">GitLogin</button> -->
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
@@ -848,6 +852,7 @@
 
       setPersistence(auth, browserLocalPersistence)
         .then(() => {
+          signInWithPopup(auth, provider);
           signInWithEmailAndPassword(auth, email, pass);
           readToDB();
 
