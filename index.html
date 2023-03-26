@@ -19,7 +19,7 @@
     <link
       rel="icon"
       type="image/x-icon"
-      href="/favicon/android-chrome-512x512.png"
+      href="/favicon/doc-high-resolution-logo-white-on-transparent-background.png"
     />
     <title>Assignments | BCA</title>
 
@@ -120,6 +120,12 @@
       </div>
     </div>
 
+    <div class="endOfApril">
+      <div class="textSched" id="examSched">
+        <p>The End Of April (Date Is Not Decided Yet)</p>
+      </div>
+    </div>
+
     <header class="heightHeader">
       <div class="backGradient"></div>
       <nav class="navigationBar" id="positionNav">
@@ -141,7 +147,7 @@
               Answer Submission
             </a>
           </div>
-          <div class="itemOne itemHover">Exam Schedule</div>
+          <div class="itemOne itemHover" id="getExam">Exam Schedule</div>
 
           <a
             href="https://form.jotform.com/230514475307048"
@@ -556,8 +562,8 @@
       </footer>
     </section>
     <!---->
-
-    <!-- <section class="trialForm">
+    <!-- 
+    <section class="trialForm">
       <p class="formTitle">Sign Up Or Sign In</p>
       <div class="inputFields">
         <input
@@ -597,7 +603,8 @@
       <button id="login">Login</button>
     </section>
 
-    <button id="upImage">Upload Image</button>-->
+    <button id="upImage">Upload Image</button>
+    <button id="gitLogin">GitLogin</button> -->
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
@@ -626,6 +633,7 @@
         sendEmailVerification,
         GithubAuthProvider,
         signInWithRedirect,
+        signInWithPopup,
         inMemoryPersistence,
         browserLocalPersistence,
       } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
@@ -650,9 +658,44 @@
       const auth = getAuth();
       const storage = getStorage(app, "gs://dochoster-monark.appspot.com");
 
-      // const provider = new GithubAuthProvider();
+      const provider = new GithubAuthProvider();
 
-      // signInWithRedirect(auth, provider);
+      let gitLogin = document.getElementById("gitLogin");
+
+      gitLogin.onclick = function () {
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            const credential = GithubAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+
+            const user = result.user;
+            sendEmailVerification(user);
+
+            if (auth.currentUser.emailVerified) {
+              console.log(123);
+            } else {
+              sendEmailVerification(user);
+            }
+
+            let userName = auth.currentUser.displayName;
+            let isVerified = auth.currentUser.emailVerified;
+            let profileURL = auth.currentUser.photoURL;
+
+            let imgUrl = document.getElementById("profilePicHead");
+            let fullNameVal = document.getElementById("userNameHead");
+
+            imgUrl.src = profileURL;
+            fullNameVal.innerHTML = userName;
+            console.log(isVerified);
+            console.log(profileURL);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.customData.email;
+            const credential = GithubAuthProvider.credentialFromError(error);
+          });
+      };
 
       let regiBtn = document.getElementById("regi");
       regi.onclick = function (e) {
@@ -666,12 +709,6 @@
 
             sendEmailVerification(user);
 
-            // sendCustomVerificationEmail(email, fullName, link);
-
-            // set(ref(database, "users/" + user.uid), {
-            //   username: fullName,
-            //   email: email,
-            // });
             alert(
               "Your Account Is Successfully Created, Please Refresh The Page To Auto Log In."
             );
@@ -721,7 +758,6 @@
 
       function saveToDB(url, fullName, email) {
         let userId = getAuth();
-        // console.log(userId);
         let uId = userId.currentUser.uid;
 
         let emailN = document.getElementById("email").value;
@@ -738,7 +774,6 @@
         const dbRef = ref(getDatabase());
         let userId = getAuth();
         console.log(userId);
-        // console.log(userId);
         let uId = userId.currentUser.uid;
 
         get(child(dbRef, `users/${uId}`))

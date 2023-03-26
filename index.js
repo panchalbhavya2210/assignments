@@ -1,3 +1,25 @@
+function onSubmit(token) {
+  console.log(token);
+  document.getElementById("demo-form").submit();
+  console.log(token);
+}
+
+function onClick() {
+  // e.preventDefault();
+  grecaptcha.ready(function () {
+    grecaptcha
+      .execute("6LeOSTElAAAAAIc7gpdLosRpKzfAgyU58MLBGQea", { action: "submit" })
+      .then(function (token) {
+        console.log(token);
+        console.log(3);
+        // Add your logic to submit to your backend server here.
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
+
 let arrayNew = [
   {
     java: {
@@ -22,6 +44,19 @@ let dateShow = document.getElementById("dateShow");
 let time = document.getElementById("time");
 
 setInterval(updateTimer, 500);
+
+let getExam = document.getElementById("getExam");
+
+getExam.onmouseover = function (e) {
+  let examSched = document.getElementById("examSched");
+
+  examSched.classList.add("toggleTable");
+};
+getExam.onmouseleave = function (e) {
+  let examSched = document.getElementById("examSched");
+
+  examSched.classList.remove("toggleTable");
+};
 
 function updateTimer() {
   let getTime = new Date();

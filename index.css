@@ -556,6 +556,35 @@ body {
   font-weight: bolder;
   font-size: 1.009rem;
 }
+
+.textSched {
+  position: absolute;
+  top: 60px;
+  right: 200px;
+  background-color: rgb(255, 255, 255);
+  z-index: 55;
+  color: #000;
+  padding: 10px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: 0.5s;
+}
+.toggleTable {
+  opacity: 1;
+}
+.textSched::before {
+  content: "";
+  position: absolute;
+  /* width: 10px;
+  height: 10px; */
+
+  top: -24%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+  right: 150px;
+}
+
 @media only screen and (max-width: 675px) {
   .students {
     width: 100%;
