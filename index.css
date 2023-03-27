@@ -81,12 +81,12 @@ body {
   left: 180px;
   top: 60px;
   z-index: 55;
-  background: linear-gradient(
+  /* background: linear-gradient(
     145.49deg,
     rgba(151, 255, 212, 0.84) 3.95%,
     rgba(151, 202, 243, 0.598) 100%
-  );
-
+  ); */
+  background-color: #fffbfbb3;
   backdrop-filter: blur(10px);
   /* Note: backdrop-filter has minimal browser support */
 
@@ -106,10 +106,10 @@ body {
   width: 40%;
 }
 .inpFields {
-  width: 200%;
+  width: 213%;
   margin: 5px 0 20px 20px;
   border-radius: 5px;
-  border: 1px solid #beff63;
+  border: 1px solid #0e1406;
   padding: 8px;
   font-family: Plus Jakarta Sans;
   background-color: #ffffff75;
@@ -122,18 +122,24 @@ body {
   /* font-weight: 700; */
 }
 .regiBtn {
-  width: 150px;
+  width: 350px;
   height: 35px;
   margin: 10px 20px 0 20px;
-  background: #fff;
+  background: #76dd54;
   border: none;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 2px;
   font-family: Plus Jakarta Sans;
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1.5rem;
   box-shadow: 5px 5px 1px #000;
+  transition: 0.2s;
+  border: 2px solid #000;
+}
+.regiBtn:hover {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: 0 0 0;
 }
 .inpFile::-webkit-file-upload-button {
   height: 50px;
@@ -153,6 +159,30 @@ body {
   color: #000;
   font-size: 1.01rem;
   /* font-weight: bold; */
+}
+.fileProgressDiv {
+  display: flex;
+  width: 240%;
+  justify-content: space-between;
+  align-items: center;
+}
+.rectProgress {
+  width: 100%;
+  height: 10px;
+  margin: 0 10px 5px 0;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.fillProgress {
+  width: 100%;
+  height: 7px;
+  background-color: rgb(40, 137, 201);
+  margin: 0 0 0 2px;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 .items a {
   color: #fff;

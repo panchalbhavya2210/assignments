@@ -562,38 +562,39 @@
       </footer>
     </section>
     <!---->
-    <!-- 
-    <section class="trialForm">
-      <div class="inputFields">
-        <p class="formTitle">Sign Up</p>
-        <label for="email" class="labelSignUp">Email</label>
-        <input
-          type="email"
-          name=""
-          id="email"
-          value=""
-          class="inpFields"
-          placeholder="Your Email"
-        />
-        <label for="pass" class="labelSignUp">Password</label>
-        <input
-          type="password"
-          name=""
-          id="pass"
-          value=""
-          class="inpFields"
-          placeholder="Your Password"
-        />
-        <label for="name" class="labelSignUp">Username</label>
-        <input
-          type="text"
-          name=""
-          id="name"
-          value=""
-          class="inpFields"
-          placeholder="Username"
-        />
-        <label for="fileUpload" class="labelSignUp">Your Image : </label>
+
+    <!-- <section class="trialForm"> -->
+    <div class="inputFields">
+      <p class="formTitle">Sign Up</p>
+      <label for="email" class="labelSignUp">Email</label>
+      <input
+        type="email"
+        name=""
+        id="email"
+        value=""
+        class="inpFields"
+        placeholder="Your Email"
+      />
+      <label for="pass" class="labelSignUp">Password</label>
+      <input
+        type="password"
+        name=""
+        id="pass"
+        value=""
+        class="inpFields"
+        placeholder="Your Password"
+      />
+      <label for="name" class="labelSignUp">Username</label>
+      <input
+        type="text"
+        name=""
+        id="name"
+        value=""
+        class="inpFields"
+        placeholder="Username"
+      />
+      <label for="fileUpload" class="labelSignUp">Your Image : </label>
+      <div class="fileProgressDiv">
         <input
           type="file"
           name="files[]"
@@ -602,11 +603,14 @@
           placeholder="Choose An Image"
           accept="image/jpeg, image/png"
         />
-        <button class="regiBtn" id="regi">Sign Up</button>
+        <div class="rectProgress">
+          <div class="fillProgress" id="progBar"></div>
+        </div>
       </div>
-    </section>
-    <!-- <button id="login">Login</button> -->
-
+      <button class="regiBtn" id="regi">Sign Up</button>
+    </div>
+    <!-- </section> -->
+    <!-- <button id="login">Login</button>
     <button id="upImage">Upload Image</button>
     <button id="gitLogin">GitLogin</button> -->
 
@@ -738,6 +742,16 @@
               "state_changed",
               (snapshot) => {
                 console.log("WHoooo");
+                let progBar = document.getElementById("progBar");
+                let snapshotMaxVal = snapshot.totalBytes;
+                let snapshotProgressed = snapshot.bytesTransferred;
+
+                let mathOfProgress =
+                  (snapshotProgressed / snapshotMaxVal) * 100;
+
+                progBar.style.width = mathOfProgress + "%";
+
+                console.log(mathOfProgress);
               },
               (error) => {
                 console.log(error);
@@ -849,48 +863,31 @@
       };
 
       let loginUser = document.getElementById("login");
-
       setPersistence(auth, browserLocalPersistence)
         .then(() => {
-          signInWithPopup(auth, provider);
           signInWithEmailAndPassword(auth, email, pass);
           readToDB();
-
-          // .then((userCreds) => {
-          //   // updateData();
-          //   readToDB();
-          // })
-
-          // .catch(function (error) {
-          //   let code = error.code;
-          //   let errordet = error.message;
-
-          //   alert(code + errordet);
-          // });
         })
         .catch(function (error) {
-          console.log(error);
+          let code = error.code;
+          let errordet = error.message;
+
+          alert(code + errordet);
         });
 
       loginUser.onclick = function () {
         let email = document.getElementById("email").value;
         let pass = document.getElementById("pass").value;
-
         signInWithEmailAndPassword(auth, email, pass)
-          // readToDB();
-
           .then((userCreds) => {
-            // updateData();
+            signInWithEmailAndPassword(auth, email, pass);
             readToDB();
           })
-
           .catch(function (error) {
             let code = error.code;
             let errordet = error.message;
-
             alert(code + errordet);
           });
-        // readToDB();
       };
     </script>
     <script src="index.js"></script>
