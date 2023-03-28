@@ -563,57 +563,54 @@
     </section>
     <!---->
 
-    <!-- <section class="trialForm"> -->
-    <div class="inputFields">
-      <p class="formTitle">Sign Up</p>
-      <label for="email" class="labelSignUp">Email</label>
-      <input
-        type="email"
-        name=""
-        id="email"
-        value=""
-        class="inpFields"
-        placeholder="Your Email"
-      />
-      <label for="pass" class="labelSignUp">Password</label>
-      <input
-        type="password"
-        name=""
-        id="pass"
-        value=""
-        class="inpFields"
-        placeholder="Your Password"
-      />
-      <label for="name" class="labelSignUp">Username</label>
-      <input
-        type="text"
-        name=""
-        id="name"
-        value=""
-        class="inpFields"
-        placeholder="Username"
-      />
-      <label for="fileUpload" class="labelSignUp">Your Image : </label>
-      <div class="fileProgressDiv">
+    <section class="trialForm">
+      <div class="inputFields">
+        <p class="formTitle">Sign Up</p>
+        <label for="email" class="labelSignUp">Email</label>
         <input
-          type="file"
-          name="files[]"
-          id="fileUpload"
-          class="inpFile"
-          placeholder="Choose An Image"
-          accept="image/jpeg, image/png"
+          type="email"
+          name=""
+          id="email"
+          value=""
+          class="inpFields"
+          placeholder="Your Email"
         />
-        <div class="rectProgress">
-          <div class="fillProgress" id="progBar"></div>
+        <label for="pass" class="labelSignUp">Password</label>
+        <input
+          type="password"
+          name=""
+          id="pass"
+          value=""
+          class="inpFields"
+          placeholder="Your Password"
+        />
+        <label for="name" class="labelSignUp">Username</label>
+        <input
+          type="text"
+          name=""
+          id="name"
+          value=""
+          class="inpFields"
+          placeholder="Username"
+        />
+        <label for="fileUpload" class="labelSignUp">Your Image : </label>
+        <div class="fileProgressDiv">
+          <input
+            type="file"
+            name="files[]"
+            id="fileUpload"
+            class="inpFile"
+            placeholder="Choose An Image"
+            accept="image/jpeg, image/png"
+          />
+          <div class="rectProgress">
+            <div class="fillProgress" id="progBar"></div>
+          </div>
         </div>
+        <button class="regiBtn" id="regi">Sign Up</button>
       </div>
-      <button class="regiBtn" id="regi">Sign Up</button>
-    </div>
-    <!-- </section> -->
-    <!-- <button id="login">Login</button>
-    <button id="upImage">Upload Image</button>
-    <button id="gitLogin">GitLogin</button> -->
-
+    </section>
+    1
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
       import {
