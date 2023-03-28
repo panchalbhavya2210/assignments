@@ -563,7 +563,7 @@
     </section>
     <!---->
 
-    <!-- <section class="trialForm">
+    <section class="trialForm">
       <div class="inputFields">
         <p class="formTitle">Sign Up</p>
         <label for="email" class="labelSignUp">Email</label>
@@ -602,6 +602,7 @@
             class="inpFile"
             placeholder="Choose An Image"
             accept="image/jpeg, image/png"
+            value="./favicon/Screenshot_20230326_141003.png"
           />
           <div class="rectProgress">
             <div class="fillProgress" id="progBar"></div>
@@ -612,7 +613,7 @@
     </section>
     <button id="login">Login</button>
     <button id="upImage">Upload Image</button>
-    <button id="gitLogin">GitLogin</button> -->
+    <button id="gitLogin">GitLogin</button>
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
@@ -714,55 +715,64 @@
         createUserWithEmailAndPassword(auth, email, pass)
           .then((userCreds) => {
             let user = userCreds.user;
-
             sendEmailVerification(user);
-
             alert(
               "Your Account Is Successfully Created, Please Refresh The Page To Auto Log In."
             );
+
             let fileName = document.getElementById("fileUpload").files[0];
             let fileNameMain = document.getElementById("fileUpload").value;
 
-            const metaData = {
-              contentType: fileName.type,
-            };
+            if (document.getElementById("fileUpload").files.length == 0) {
+              let emailVer = auth.currentUser.emailVerified;
+              saveToDB(`${fullName},${email},${emailVer}`);
+            } else {
+              const metaData = {
+                contentType: fileName.type,
+              };
 
-            const storageRef = sRef(
-              storage,
-              `${user.uid}/${fileNameMain}` + fileName
-            );
+              const storageRef = sRef(
+                storage,
+                `${user.uid}/${fileNameMain}` + fileName
+              );
 
-            const UploadTask = uploadBytesResumable(
-              storageRef,
-              fileName,
-              metaData
-            );
+              const UploadTask = uploadBytesResumable(
+                storageRef,
+                fileName,
+                metaData
+              );
 
-            UploadTask.on(
-              "state_changed",
-              (snapshot) => {
-                console.log("WHoooo");
-                let progBar = document.getElementById("progBar");
-                let snapshotMaxVal = snapshot.totalBytes;
-                let snapshotProgressed = snapshot.bytesTransferred;
+              UploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                  console.log("WHoooo");
+                  let progBar = document.getElementById("progBar");
+                  let snapshotMaxVal = snapshot.totalBytes;
+                  let snapshotProgressed = snapshot.bytesTransferred;
 
-                let mathOfProgress =
-                  (snapshotProgressed / snapshotMaxVal) * 100;
+                  let mathOfProgress =
+                    (snapshotProgressed / snapshotMaxVal) * 100;
 
-                progBar.style.width = mathOfProgress + "%";
+                  progBar.style.width = mathOfProgress + "%";
 
-                console.log(mathOfProgress);
-              },
-              (error) => {
-                console.log(error);
-              },
-              () => {
-                getDownloadURL(UploadTask.snapshot.ref).then((downnloadURL) => {
-                  saveToDB(`${downnloadURL},${fullName},${email}`);
-                });
-              }
-            );
+                  console.log(mathOfProgress);
+                },
+                (error) => {
+                  console.log(error);
+                },
+                () => {
+                  getDownloadURL(UploadTask.snapshot.ref).then(
+                    (downnloadURL) => {
+                      saveToDB(
+                        `${downnloadURL},${fullName},${email},${emailVer}`
+                      );
+                    }
+                  );
+                }
+              );
+            }
           })
+
           .catch(function (error) {
             let code = error.code;
             let errordet = error.message;
@@ -774,18 +784,19 @@
         });
       };
 
-      function saveToDB(url, fullName, email) {
+      function saveToDB(url, fullName, email, emailVer) {
         let userId = getAuth();
         let uId = userId.currentUser.uid;
 
         let emailN = document.getElementById("email").value;
-        let pass = document.getElementById("pass").value;
         let fullNameN = document.getElementById("name").value;
+        let emailVerifiedBool = auth.currentUser.emailVerified;
 
         set(ref(database, "users/" + uId), {
           username: fullNameN,
           email: emailN,
           ImageUrl: url,
+          isVerified: emailVerifiedBool,
         });
       }
       function readToDB(url, fullName, email) {
@@ -814,7 +825,8 @@
           });
       }
 
-      function changeImage() {
+      function changeImage() {}
+      function updateData() {
         let userId = getAuth();
         let uId = userId.currentUser.uid;
         let fileName = document.getElementById("fileUpload").files[0];
@@ -831,30 +843,28 @@
         UploadTask.on(
           "state_changed",
           (snapshot) => {
-            // console.log(snapshot);
+            console.log(snapshot);
           },
-          (error) => {
-            // console.log(error);
-          },
+          (error) => {},
           () => {
             getDownloadURL(UploadTask.snapshot.ref).then((downnloadURL) => {
-              updateData(`${downnloadURL}`);
+              // updateData(`${downnloadURL}`);
+              // return downnloadURL;
+              let fullNameN = document.getElementById("name").value;
+              let emailVer = auth.currentUser.emailVerified;
+              update(ref(database, "users/" + uId), {
+                ImageUrl: downnloadURL,
+                username: fullNameN,
+                isVerified: emailVer,
+              });
             });
           }
         );
-      }
-      function updateData(url) {
-        changeImage();
 
-        console.log(url);
-        let userId = getAuth();
-        let uId = userId.currentUser.uid;
-        let fullNameN = document.getElementById("name").value;
-
-        update(ref(database, "users/" + uId), {
-          ImageUrl: url,
-          username: fullNameN,
-        });
+        // update(ref(database, "users/" + uId), {
+        //   ImageUrl: url,
+        //   username: fullNameN,
+        // });
       }
 
       let fileUpload = document.getElementById("upImage");
