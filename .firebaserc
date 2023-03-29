@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "dochoster-monark"
-  }
+    "default": "dochoster-monark",
+    "colg": "dochoster-monark"
+  },
+  "targets": {},
+  "etags": {}
 }
