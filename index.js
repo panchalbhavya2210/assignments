@@ -327,3 +327,19 @@ function scrollDown() {
     });
   }
 }
+
+function changeInputType() {
+  let password = document.getElementById("password");
+  let eyeImg = document.getElementById("eyeImg");
+
+  let textType = "text";
+  let passType = "password";
+
+  if (password.type == passType) {
+    eyeImg.src = "./img/eye-off-svgrepo-com.svg";
+    password.type = textType;
+  } else {
+    eyeImg.src = "./img/eye-svgrepo-com.svg";
+    password.type = passType;
+  }
+}

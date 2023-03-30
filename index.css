@@ -732,6 +732,8 @@ body {
 .inputFlex {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  margin: 20px 0;
 }
 label {
   font-weight: bolder;
@@ -745,6 +747,20 @@ label {
   outline: none;
   padding: 5px;
   font-family: Plus Jakarta Sans;
+}
+.inpEmailSt {
+  width: 325px;
+}
+.pass {
+  position: relative;
+}
+.eyeOff {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 8px;
+  top: 23px;
+  cursor: pointer;
 }
 @media only screen and (max-width: 675px) {
   .students {

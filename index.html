@@ -619,10 +619,35 @@
           </div>
         </div>
         <div class="inputFlex">
-          <input type="email" class="inputStyle" />
+          <div class="email">
+            <label for="email">Your Email</label>
+            <br />
+            <input type="email" class="inputStyle inpEmailSt" />
+          </div>
         </div>
         <div class="inputFlex">
-          <input type="password" class="inputStyle" />
+          <div class="pass">
+            <label for="password">Your Password</label>
+            <br />
+            <input
+              type="password"
+              class="inputStyle inpEmailSt"
+              id="password"
+            />
+            <img
+              src="./img/eye-off-svgrepo-com.svg"
+              alt=""
+              srcset=""
+              class="eyeOff"
+              onclick="changeInputType()"
+              id="eyeImg"
+            />
+          </div>
+        </div>
+        <div class="inputFlex">
+          <div class="addFile">
+            <input type="file" accept="image/png , image/jpg, image/jpeg" />
+          </div>
         </div>
       </div>
     </section>
