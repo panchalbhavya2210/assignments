@@ -605,6 +605,7 @@
               id="fullName"
               class="inputStyle"
               maxlength="22"
+              value="TaxoRin"
             />
           </div>
           <div class="userName">
@@ -615,6 +616,7 @@
               id="userName"
               class="inputStyle"
               maxlength="16"
+              value="TaxoWill"
             />
           </div>
         </div>
@@ -622,7 +624,7 @@
           <div class="email">
             <label for="email">Your Email</label>
             <br />
-            <input type="email" class="inputStyle inpEmailSt" />
+            <input type="email" class="inputStyle inpEmailSt" id="email" />
           </div>
         </div>
         <div class="inputFlex">
@@ -633,6 +635,7 @@
               type="password"
               class="inputStyle inpEmailSt"
               id="password"
+              value="123456"
             />
             <img
               src="./img/eye-off-svgrepo-com.svg"
@@ -646,8 +649,19 @@
         </div>
         <div class="inputFlex">
           <div class="addFile">
-            <input type="file" accept="image/png , image/jpg, image/jpeg" />
+            <label for="imageInput">Profile Picture</label>
+            <br />
+            <input
+              type="file"
+              accept="image/png , image/jpg, image/jpeg"
+              class="inpFile"
+              id="imageInput"
+            />
           </div>
+        </div>
+
+        <div class="submitButton">
+          <button class="signUpBtn" id="signUpBtn">SIGN UP</button>
         </div>
       </div>
     </section>
@@ -655,6 +669,17 @@
     <script type="module">
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+      import {
+        getStorage,
+        ref as sRef,
+        uploadBytesResumable,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-storage.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+      } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
       import {
         getAuth,
         createUserWithEmailAndPassword,
@@ -673,19 +698,87 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
+      const storage = getStorage(app, "gs://dochoster-8520f.appspot.com");
+      const database = getDatabase(app);
       let auth = getAuth();
 
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          // ...
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // ..
-        });
+      let signUpBtn = document.getElementById("signUpBtn");
+
+      signUpBtn.onclick = function () {
+        let email = document.getElementById("email").value;
+        let fullName = document.getElementById("userName").value;
+        let userName = document.getElementById("fullName").value;
+        let password = document.getElementById("password").value;
+
+        createUserWithEmailAndPassword(
+          auth,
+          email,
+          password,
+          userName,
+          fullName
+        )
+          .then((userCredential) => {
+            const user = userCredential.user;
+
+            if (imageInput.files.length == 0) {
+              confirm("Image Is Not Entered Yet, Do You Still Wanna Continue?");
+              let email = document.getElementById("email").value;
+              let fullName = document.getElementById("userName").value;
+              let userName = document.getElementById("fullName").value;
+              set(ref(database, "users/" + user.uid), {
+                username: userName,
+                email: email,
+                full_name: fullName,
+              });
+            } else {
+              const imageInput = document.getElementById("imageInput").files[0];
+              const imageName = document.getElementById("imageInput").value;
+              const storageRef = sRef(
+                storage,
+                `${user.uid}/${imageName}` + imageInput
+              );
+
+              uploadBytesResumable(storageRef, imageInput)
+                .then((snapshot) => {
+                  console.log(snapshot);
+                  getDownloadURL(snapshot.ref).then((downloadURL) => {
+                    // console.log("Image uploaded successfully: " + downloadURL);
+                    console.log(downloadURL);
+                    let email = document.getElementById("email").value;
+                    let fullName = document.getElementById("userName").value;
+                    let userName = document.getElementById("fullName").value;
+
+                    set(ref(database, "users/" + user.uid), {
+                      username: userName,
+                      email: email,
+                      profile_picture: downloadURL,
+                      full_name: fullName,
+                    });
+                  });
+                })
+                .catch((error) => {
+                  console.error("Error uploading image", error);
+                });
+            }
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+      };
+      let imageInput = document.getElementById("imageInput");
+
+      imageInput.onchange = function () {
+        let imageInput = document.getElementById("imageInput");
+        var fileSize = imageInput.files[0].size;
+        var maxSize = 10 * 1024 * 512;
+        if (fileSize > maxSize) {
+          alert(
+            "The file is too large. Please choose a file smaller than 5 MB."
+          );
+          return false;
+        }
+      };
     </script>
 
     <script src="index.js"></script>

@@ -141,7 +141,7 @@ body {
   transform: translateX(2px) translateY(2px);
   box-shadow: 0 0 0;
 }
-.inpFile::-webkit-file-upload-button {
+/* .inpFile::-webkit-file-upload-button {
   height: 50px;
   width: 50%;
   visibility: hidden;
@@ -158,8 +158,8 @@ body {
   border-radius: 30px;
   color: #000;
   font-size: 1.01rem;
-  /* font-weight: bold; */
-}
+  /* font-weight: bold; 
+} */
 .fileProgressDiv {
   display: flex;
   width: 240%;
@@ -661,7 +661,7 @@ body {
   color: #000;
 }
 .signUpFormDiv {
-  width: 30%;
+  width: 370px;
   height: 500px;
   background-color: #f1f1f1;
   border-radius: 10px;
@@ -762,6 +762,38 @@ label {
   top: 23px;
   cursor: pointer;
 }
+.inpFile {
+  font-family: Plus Jakarta Sans;
+  background: none;
+}
+.submitButton {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signUpBtn {
+  background: #1c6b15;
+  border: none;
+  font-family: Plus Jakarta Sans;
+  padding: 10px;
+  width: 90%;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+
 @media only screen and (max-width: 675px) {
   .students {
     width: 100%;
