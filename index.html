@@ -174,6 +174,7 @@
           </div>
         </div>
       </nav>
+
       <div class="hero-section">
         <div class="assignment-text">
           <div class="timeDate">
@@ -567,7 +568,23 @@
       </footer>
     </section>
 
-    <section class="signUpForm">
+    <section class="signUpOrLogInOpt">
+      <div class="signUpOrLogin">
+        <div class="signUpBtnF">
+          <button class="buttonForm" id="signUpFormBlock">Sign Up</button>
+        </div>
+        <div class="lineD"></div>
+        <div class="logInBtn">
+          <button class="buttonForm" id="loginFormBlock">Log In</button>
+        </div>
+        <div class="lineD"></div>
+        <div class="logInBtn">
+          <button class="buttonForm" disabled>Update Profile</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="signUpForm" id="signUpForm">
       <div class="signUpFormDiv">
         <div class="titleForm">
           <h2>SIGN UP</h2>
@@ -576,6 +593,7 @@
             alt=""
             srcset=""
             class="imgClose"
+            id="closeSignUp"
           />
         </div>
         <div class="authWithGithub">
@@ -666,6 +684,44 @@
       </div>
     </section>
 
+    <section class="loginFormSec" id="loginForm">
+      <div class="loginForm">
+        <div class="titleForm">
+          <h2>LOG IN</h2>
+          <img
+            src="./img/close_FILL0_wght400_GRAD0_opsz48.svg"
+            alt=""
+            srcset=""
+            class="imgClose"
+            id="closeLogIn"
+          />
+        </div>
+        <div class="inputFlex">
+          <div class="inputField">
+            <label for="emailLogin">Your Email</label>
+            <br />
+            <input type="text" id="emailLogin" class="inputStyle widthInput" />
+          </div>
+        </div>
+        <div class="inputFlex">
+          <div class="inputField">
+            <label for="passwordLogin">Your Password</label>
+            <br />
+            <input
+              type="password"
+              id="passwordLogin"
+              class="inputStyle widthInput"
+            />
+          </div>
+        </div>
+
+        <div class="submitButton">
+          <button class="signUpBtn" id="loginButton">LOG IN</button>
+        </div>
+        <div class="passReset" id="passRest">Forgot Password?</div>
+      </div>
+    </section>
+
     <script type="module">
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
@@ -679,10 +735,21 @@
         getDatabase,
         ref,
         set,
+        update,
+        child,
+        get,
       } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
       import {
         getAuth,
         createUserWithEmailAndPassword,
+        sendEmailVerification,
+        signInWithPopup,
+        inMemoryPersistence,
+        signInWithEmailAndPassword,
+        setPersistence,
+        browserSessionPersistence,
+        GithubAuthProvider,
+        sendPasswordResetEmail,
       } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 
       const firebaseConfig = {
@@ -719,12 +786,15 @@
         )
           .then((userCredential) => {
             const user = userCredential.user;
+            sendEmailVerification(user);
 
             if (imageInput.files.length == 0) {
               confirm("Image Is Not Entered Yet, Do You Still Wanna Continue?");
+
               let email = document.getElementById("email").value;
               let fullName = document.getElementById("userName").value;
               let userName = document.getElementById("fullName").value;
+
               set(ref(database, "users/" + user.uid), {
                 username: userName,
                 email: email,
@@ -738,32 +808,51 @@
                 `${user.uid}/${imageName}` + imageInput
               );
 
-              uploadBytesResumable(storageRef, imageInput)
-                .then((snapshot) => {
-                  console.log(snapshot);
-                  getDownloadURL(snapshot.ref).then((downloadURL) => {
-                    // console.log("Image uploaded successfully: " + downloadURL);
-                    console.log(downloadURL);
-                    let email = document.getElementById("email").value;
-                    let fullName = document.getElementById("userName").value;
-                    let userName = document.getElementById("fullName").value;
+              const uploadTask = uploadBytesResumable(storageRef, imageInput);
 
-                    set(ref(database, "users/" + user.uid), {
-                      username: userName,
-                      email: email,
-                      profile_picture: downloadURL,
-                      full_name: fullName,
-                    });
-                  });
-                })
-                .catch((error) => {
-                  console.error("Error uploading image", error);
-                });
+              uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                  const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                  console.log("Upload is " + progress + "% done");
+                  switch (snapshot.state) {
+                    case "paused":
+                      console.log("Upload is paused");
+                      break;
+                    case "running":
+                      console.log("Upload is running");
+                      break;
+                  }
+                },
+                (error) => {
+                  alert(error);
+                },
+                () => {
+                  getDownloadURL(uploadTask.snapshot.ref).then(
+                    (downloadURL) => {
+                      console.log("File available at", downloadURL);
+
+                      let email = document.getElementById("email").value;
+                      let fullName = document.getElementById("userName").value;
+                      let userName = document.getElementById("fullName").value;
+
+                      set(ref(database, "users/" + user.uid), {
+                        username: userName,
+                        email: email,
+                        profile_picture: downloadURL,
+                        full_name: fullName,
+                      });
+
+                      console.log(userCredential.user);
+                    }
+                  );
+                }
+              );
             }
           })
           .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            console.log(error);
           });
       };
       let imageInput = document.getElementById("imageInput");
@@ -778,6 +867,21 @@
           );
           return false;
         }
+      };
+
+      let passRest = document.getElementById("passRest");
+
+      passRest.onclick = function resetPassword() {
+        alert(1);
+        let email = document.getElementById("emailLogin").value;
+        sendPasswordResetEmail(auth, email)
+          .then(() => {
+            console.log("email send");
+            // Password reset email sent successfully
+          })
+          .catch((error) => {
+            // Handle error
+          });
       };
     </script>
 

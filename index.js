@@ -1,25 +1,3 @@
-function onSubmit(token) {
-  console.log(token);
-  document.getElementById("demo-form").submit();
-  console.log(token);
-}
-
-function onClick() {
-  // e.preventDefault();
-  grecaptcha.ready(function () {
-    grecaptcha
-      .execute("6LeOSTElAAAAAIc7gpdLosRpKzfAgyU58MLBGQea", { action: "submit" })
-      .then(function (token) {
-        console.log(token);
-        console.log(3);
-        // Add your logic to submit to your backend server here.
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-}
-
 let arrayNew = [
   {
     java: {
@@ -30,6 +8,38 @@ let arrayNew = [
     },
   },
 ];
+
+let signUpFormBlock = document.getElementById("signUpFormBlock");
+
+signUpFormBlock.onclick = function () {
+  let signUpForm = document.getElementById("signUpForm");
+
+  signUpForm.classList.add("toggleSignUp");
+};
+
+let closeSignUp = document.getElementById("closeSignUp");
+
+closeSignUp.onclick = function () {
+  let signUpForm = document.getElementById("signUpForm");
+
+  signUpForm.classList.remove("toggleSignUp");
+};
+
+let loginFormBlock = document.getElementById("loginFormBlock");
+
+loginFormBlock.onclick = function () {
+  let loginForm = document.getElementById("loginForm");
+
+  loginForm.classList.add("loginToggle");
+};
+
+let closeLogIn = document.getElementById("closeLogIn");
+
+closeLogIn.onclick = function () {
+  let loginForm = document.getElementById("loginForm");
+
+  loginForm.classList.remove("loginToggle");
+};
 
 let greetUser = document.getElementById("greet-user");
 
