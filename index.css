@@ -863,7 +863,60 @@ label {
   margin: 10px 10px 0 0;
 }
 .widthInput {
-  width: 300px;
+  width: 280px;
+  margin: 0 10px;
+}
+.myProfileSec {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(205, 205, 205, 0.626);
+  backdrop-filter: blur(5px);
+  transition: 0.5s;
+  z-index: -1;
+  opacity: 0;
+}
+.profileVis {
+  z-index: 555;
+  opacity: 1;
+}
+.myProfileDiv {
+  width: 310px;
+  height: 480px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  color: #000;
+}
+.circleImageProfile {
+  width: 100%;
+  height: 140px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profileImageCard {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgb(134, 134, 134);
+}
+.emailFieldUpdate {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.subStyle {
+  width: 270px;
+  margin: 10px 0;
+}
+.changeDetailBtn {
+  margin: 20px 0 0 0;
 }
 @media only screen and (max-width: 675px) {
   .students {

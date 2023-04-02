@@ -33,12 +33,20 @@ loginFormBlock.onclick = function () {
   loginForm.classList.add("loginToggle");
 };
 
-let closeLogIn = document.getElementById("closeLogIn");
+let updateProfile = document.getElementById("updateProfile");
 
-closeLogIn.onclick = function () {
-  let loginForm = document.getElementById("loginForm");
+updateProfile.onclick = function () {
+  let profileBlock = document.getElementById("profileBlock");
 
-  loginForm.classList.remove("loginToggle");
+  profileBlock.classList.add("profileVis");
+};
+
+let closeProfile = document.getElementById("closeProfile");
+
+closeProfile.onclick = function () {
+  let profileBlock = document.getElementById("profileBlock");
+
+  profileBlock.classList.remove("profileVis");
 };
 
 let greetUser = document.getElementById("greet-user");

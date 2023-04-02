@@ -568,7 +568,6 @@
       </footer>
     </section>
 
-<<<<<<< HEAD
     <section class="signUpOrLogInOpt">
       <div class="signUpOrLogin">
         <div class="signUpBtnF">
@@ -580,15 +579,16 @@
         </div>
         <div class="lineD"></div>
         <div class="logInBtn">
-          <button class="buttonForm" disabled>Update Profile</button>
+          <button class="buttonForm" id="updateProfile">Update Profile</button>
+        </div>
+        <div class="lineD"></div>
+        <div class="logInBtn">
+          <button class="buttonForm" id="logOutUser">Log Out</button>
         </div>
       </div>
     </section>
 
     <section class="signUpForm" id="signUpForm">
-=======
-   <!-- <section class="signUpForm">
->>>>>>> dee49d6960f1b034d43d5b22ce13169416f2130a
       <div class="signUpFormDiv">
         <div class="titleForm">
           <h2>SIGN UP</h2>
@@ -714,6 +714,7 @@
             <input
               type="password"
               id="passwordLogin"
+              value="123456"
               class="inputStyle widthInput"
             />
           </div>
@@ -724,7 +725,64 @@
         </div>
         <div class="passReset" id="passRest">Forgot Password?</div>
       </div>
-    </section>-->
+    </section>
+
+    <section class="myProfileSec" id="profileBlock">
+      <div class="myProfileDiv">
+        <div class="titleForm">
+          <h2>YOUR PROFILE</h2>
+          <img
+            src="./img/close_FILL0_wght400_GRAD0_opsz48.svg"
+            alt=""
+            srcset=""
+            class="imgClose"
+            id="closeProfile"
+          />
+        </div>
+        <div class="circleImageProfile">
+          <img
+            src="./img/andreas-gucklhorn-mawU2PoJWfU-unsplash.jpg"
+            alt=""
+            srcset=""
+            class="profileImageCard"
+          />
+        </div>
+        <div class="emailFieldUpdate">
+          <div class="subDiv">
+            <label for="emailOnRead">Your Email</label>
+            <br />
+            <input
+              type="text"
+              id="emailOnRead"
+              class="inputStyle subStyle"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="usernameFieldUpdate emailFieldUpdate">
+          <div class="subDiv">
+            <label for="userNameUpdate">Your Username</label>
+            <br />
+            <input
+              type="text"
+              id="userNameUpdate"
+              class="inputStyle subStyle"
+              placeholder="New Username"
+            />
+          </div>
+        </div>
+        <div class="usernameFieldUpdate emailFieldUpdate">
+          <div class="subDiv">
+            <label for="userNameUpdate">Select New Image</label>
+            <br />
+            <input type="file" id="imageUpdate " placeholder="fileUp" />
+          </div>
+        </div>
+        <div class="submitButton changeDetailBtn">
+          <button class="signUpBtn" id="updateData">LOG IN</button>
+        </div>
+      </div>
+    </section>
 
     <script type="module">
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
@@ -752,8 +810,10 @@
         signInWithEmailAndPassword,
         setPersistence,
         browserSessionPersistence,
+        browserLocalPersistence,
         GithubAuthProvider,
         sendPasswordResetEmail,
+        signOut,
       } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 
       const firebaseConfig = {
@@ -876,7 +936,7 @@
       let passRest = document.getElementById("passRest");
 
       passRest.onclick = function resetPassword() {
-        alert(1);
+        // alert(1);
         let email = document.getElementById("emailLogin").value;
         sendPasswordResetEmail(auth, email)
           .then(() => {
@@ -887,6 +947,155 @@
             // Handle error
           });
       };
+
+      let loginButton = document.getElementById("loginButton");
+
+      loginButton.onclick = function () {
+        let logInEmail = document.getElementById("emailLogin").value;
+        let logInPassword = document.getElementById("passwordLogin").value;
+
+        signInWithEmailAndPassword(auth, logInEmail, logInPassword)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log("logged in");
+
+            readToDB();
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+      };
+
+      function readToDB() {
+        // alert(1);
+        const dbRef = ref(getDatabase());
+        // console.log(dbRef);
+        let userId = getAuth();
+        console.log(userId);
+        let uId = userId.currentUser.uid;
+
+        get(child(dbRef, `users/${uId}`))
+          .then((snapshot) => {
+            console.log(1);
+            if (snapshot.exists()) {
+              console.log(snapshot.val());
+
+              let profile_image = snapshot.val().profile_picture;
+              let full_name = snapshot.val().full_name;
+              let email_user = snapshot.val().email;
+              let user_name = snapshot.val().username;
+
+              let imageId = (document.getElementById("profilePicHead").src =
+                profile_image);
+              console.log(profile_image, full_name, email_user, user_name);
+              // let profile_image = snapshot.val().profile_picture;
+            } else {
+              console.log("No data available");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+
+      let submitUpdate = document.getElementById("updateData");
+
+      submitUpdate.onclick = function () {
+        let imageInputUpdate = document.getElementById("imageUpdate");
+        if (imageInputUpdate.files.length == 0) {
+          confirm("Image Is Not Entered Yet, Do You Still Wanna Continue?");
+          let userNameUp = document.getElementById("userNameUpdate").value;
+
+          let user = auth.currentUser;
+
+          update(ref(database, "users/" + user.uid), {
+            username: userNameUp,
+            // email: email,
+            // full_name: fullName,
+          });
+        } else {
+          let user = auth.currentUser;
+
+          const imageInputUpdate =
+            document.getElementById("imageUpdate").files[0];
+          const imageNameUpdate = document.getElementById("imageUpdate").value;
+          const storageRef = sRef(
+            storage,
+            `${user.uid}/${imageNameUpdate}` + imageInputUpdate
+          );
+
+          const uploadTask = uploadBytesResumable(storageRef, imageInputUpdate);
+
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log("Upload is " + progress + "% done");
+              switch (snapshot.state) {
+                case "paused":
+                  console.log("Upload is paused");
+                  break;
+                case "running":
+                  console.log("Upload is running");
+                  break;
+              }
+            },
+            (error) => {
+              alert(error);
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                console.log("File available at", downloadURL);
+
+                // let email = document.getElementById("email").value;
+                let userNameUp =
+                  document.getElementById("userNameUpdate").value;
+
+                update(ref(database, "users/" + user.uid), {
+                  username: userNameUp,
+                  // email: email,
+                  profile_picture: downloadURL,
+                });
+              });
+            }
+          );
+        }
+      };
+
+      let logOutUser = document.getElementById("logOutUser");
+
+      logOutUser.onclick = function () {
+        signOut(auth)
+          .then(() => {
+            console.log("fucked off");
+          })
+          .catch((error) => {
+            // An error happened.
+          });
+      };
+
+      setPersistence(auth, browserLocalPersistence)
+        .then(() => {
+          signInWithEmailAndPassword();
+          readToDB();
+
+          // .then((userCreds) => {
+          //   // updateData();
+          //   readToDB();
+          // })
+
+          // .catch(function (error) {
+          //   let code = error.code;
+          //   let errordet = error.message;
+
+          //   alert(code + errordet);
+          // });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     </script>
 
     <script src="index.js"></script>
