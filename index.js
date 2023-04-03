@@ -33,6 +33,14 @@ loginFormBlock.onclick = function () {
   loginForm.classList.add("loginToggle");
 };
 
+let closeLogIn = document.getElementById("closeLogIn");
+
+closeLogIn.onclick = function () {
+  let loginForm = document.getElementById("loginForm");
+
+  loginForm.classList.remove("loginToggle");
+};
+
 let updateProfile = document.getElementById("updateProfile");
 
 updateProfile.onclick = function () {
@@ -104,16 +112,16 @@ function updateTimer() {
 }
 
 if (day < 10 || month < 10) {
-  dateShow.innerHTML = "0" + day + "/" + month + "/" + year;
+  dateShow.innerHTML = "0" + day + "/" + "0" + month + "/" + year;
 } else {
-  dateShow.innerHTML = day + "/" + month + "/" + year;
+  dateShow.innerHTML = "0" + day + "/" + month + "/" + year;
 }
 
-if (month < 10) {
-  dateShow.innerHTML = day + "/" + "0" + month + "/" + year;
-} else {
-  dateShow.innerHTML = day + "/" + month + "/" + year;
-}
+// if (month < 10) {
+//   dateShow.innerHTML = day + "/" + "0" + month + "/" + year;
+// } else {
+//   dateShow.innerHTML = day + "/" + month + "/" + year;
+// }
 
 if (hours == 00) {
   greetUser.innerHTML = "Good Night";

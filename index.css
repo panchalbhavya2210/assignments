@@ -349,6 +349,7 @@ body {
   font-family: Valorax;
   font-size: 5rem;
   margin: 20px 0 0 20px;
+  cursor: pointer;
 }
 .blurredBack {
   width: 100%;
@@ -667,8 +668,8 @@ body {
   opacity: 1;
 }
 .signUpFormDiv {
-  width: 370px;
-  height: 500px;
+  width: 330px;
+  height: 450px;
   background-color: #f1f1f1;
   border-radius: 10px;
 }
@@ -753,9 +754,10 @@ label {
   outline: none;
   padding: 5px;
   font-family: Plus Jakarta Sans;
+  width: 130px;
 }
 .inpEmailSt {
-  width: 325px;
+  width: 280px;
 }
 .pass {
   position: relative;
@@ -771,6 +773,31 @@ label {
 .inpFile {
   font-family: Plus Jakarta Sans;
   background: none;
+  width: 270px;
+}
+.imageUploadProcess {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 20px 0;
+}
+.imageUploadProcessMain {
+  width: 80%;
+  height: 8px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+.imageUploadProcessSub {
+  width: 0%;
+  height: 7px;
+  background-color: #1c6b15;
+  border-radius: 10px;
+  margin: 0 0 0 0.5px;
+  transition: 0.2s;
 }
 .submitButton {
   width: 100%;
@@ -796,7 +823,7 @@ label {
   right: 30px;
   top: 75px;
   width: 150px;
-  height: 110px;
+  height: 150px;
   background-color: rgb(244, 244, 244);
   z-index: 55;
   border-radius: 10px;
@@ -1332,6 +1359,7 @@ label {
     margin: 0px 0 0 0;
   }
   .logoGamin {
+    cursor: pointer;
     font-size: 2.4rem;
     margin: 50px 0 0 20px;
   }

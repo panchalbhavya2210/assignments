@@ -579,7 +579,7 @@
         </div>
         <div class="lineD"></div>
         <div class="logInBtn">
-          <button class="buttonForm" id="updateProfile">Update Profile</button>
+          <button class="buttonForm" id="updateProfile">My Profile</button>
         </div>
         <div class="lineD"></div>
         <div class="logInBtn">
@@ -600,23 +600,6 @@
             id="closeSignUp"
           />
         </div>
-        <div class="authWithGithub">
-          <div class="rectBtn">
-            <img
-              src="./img/github-mark-white.svg"
-              alt=""
-              srcset=""
-              class="imgCloseGit imgClose"
-            />&nbsp;Sign Up With Github
-          </div>
-        </div>
-        <div class="orLine">
-          <div class="orLineMain">
-            <div class="lineS"></div>
-            <div class="p">OR</div>
-            <div class="lineS"></div>
-          </div>
-        </div>
 
         <div class="inputFlex">
           <div class="fullName">
@@ -625,7 +608,7 @@
             <input
               type="text"
               id="fullName"
-              class="inputStyle"
+              class="inputStyle mobileWidth"
               maxlength="22"
               value="TaxoRin"
             />
@@ -636,7 +619,7 @@
             <input
               type="text"
               id="userName"
-              class="inputStyle"
+              class="inputStyle mobileWidth"
               maxlength="16"
               value="TaxoWill"
             />
@@ -681,7 +664,11 @@
             />
           </div>
         </div>
-
+        <div class="imageUploadProcess">
+          <div class="imageUploadProcessMain">
+            <div class="imageUploadProcessSub" id="mainProgressSignUp"></div>
+          </div>
+        </div>
         <div class="submitButton">
           <button class="signUpBtn" id="signUpBtn">SIGN UP</button>
         </div>
@@ -730,7 +717,7 @@
     <section class="myProfileSec" id="profileBlock">
       <div class="myProfileDiv">
         <div class="titleForm">
-          <h2>YOUR PROFILE</h2>
+          <h2>MY PROFILE</h2>
           <img
             src="./img/close_FILL0_wght400_GRAD0_opsz48.svg"
             alt=""
@@ -745,6 +732,7 @@
             alt=""
             srcset=""
             class="profileImageCard"
+            id="profileImageCard"
           />
         </div>
         <div class="emailFieldUpdate">
@@ -775,7 +763,7 @@
           <div class="subDiv">
             <label for="userNameUpdate">Select New Image</label>
             <br />
-            <input type="file" id="imageUpdate " placeholder="fileUp" />
+            <input type="file" id="imageUpdate" placeholder="fileUp" />
           </div>
         </div>
         <div class="submitButton changeDetailBtn">
@@ -879,7 +867,13 @@
                 (snapshot) => {
                   const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                  console.log("Upload is " + progress + "% done");
+
+                  let mainProgressSignUp =
+                    document.getElementById("mainProgressSignUp");
+
+                  mainProgressSignUp.style.width = progress + "%";
+                  console.log(mainProgressSignUp);
+
                   switch (snapshot.state) {
                     case "paused":
                       console.log("Upload is paused");
@@ -956,6 +950,8 @@
 
         signInWithEmailAndPassword(auth, logInEmail, logInPassword)
           .then((userCredential) => {
+            let userVerified = auth.currentUser.emailVerified;
+            console.log(userVerified);
             const user = userCredential.user;
             console.log("logged in");
 
@@ -977,7 +973,6 @@
 
         get(child(dbRef, `users/${uId}`))
           .then((snapshot) => {
-            console.log(1);
             if (snapshot.exists()) {
               console.log(snapshot.val());
 
@@ -988,7 +983,14 @@
 
               let imageId = (document.getElementById("profilePicHead").src =
                 profile_image);
-              console.log(profile_image, full_name, email_user, user_name);
+              let emailOnRead = (document.getElementById("emailOnRead").value =
+                email_user);
+              let userNameUpdate = (document.getElementById(
+                "userNameUpdate"
+              ).value = user_name);
+              let imageUpdate = (document.getElementById(
+                "profileImageCard"
+              ).src = profile_image);
               // let profile_image = snapshot.val().profile_picture;
             } else {
               console.log("No data available");
@@ -1078,6 +1080,8 @@
 
       setPersistence(auth, browserLocalPersistence)
         .then(() => {
+          let userVerified = auth.currentUser.emailVerified;
+          console.log(userVerified);
           signInWithEmailAndPassword();
           readToDB();
 
