@@ -15,6 +15,7 @@ signUpFormBlock.onclick = function () {
   let signUpForm = document.getElementById("signUpForm");
 
   signUpForm.classList.add("toggleSignUp");
+  selectOption.classList.remove("toggleSignUpDialogue");
 };
 
 let closeSignUp = document.getElementById("closeSignUp");
@@ -31,6 +32,7 @@ loginFormBlock.onclick = function () {
   let loginForm = document.getElementById("loginForm");
 
   loginForm.classList.add("loginToggle");
+  selectOption.classList.remove("toggleSignUpDialogue");
 };
 
 let closeLogIn = document.getElementById("closeLogIn");
@@ -47,6 +49,7 @@ updateProfile.onclick = function () {
   let profileBlock = document.getElementById("profileBlock");
 
   profileBlock.classList.add("profileVis");
+  selectOption.classList.remove("toggleSignUpDialogue");
 };
 
 let closeProfile = document.getElementById("closeProfile");
@@ -55,6 +58,21 @@ closeProfile.onclick = function () {
   let profileBlock = document.getElementById("profileBlock");
 
   profileBlock.classList.remove("profileVis");
+};
+
+let profilePicClick = document.getElementById("profilePicHead");
+
+profilePicClick.onclick = function () {
+  let selectOption = document.getElementById("selectOption");
+
+  selectOption.classList.toggle("toggleSignUpDialogue");
+};
+let profilePicClickMob = document.getElementById("profilePicHeadMob");
+
+profilePicClickMob.onclick = function () {
+  let selectOption = document.getElementById("selectOption");
+
+  selectOption.classList.toggle("toggleSignUpDialogue");
 };
 
 let greetUser = document.getElementById("greet-user");

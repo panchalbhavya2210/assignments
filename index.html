@@ -39,6 +39,7 @@
         <div class="closeBars cBTwo bars"></div>
         <div class="closeBars cBThi bars"></div>
       </div>
+
       <div class="itemsNav">
         <div class="aniMationBar">
           <a
@@ -127,6 +128,7 @@
 
     <div class="endOfApril">
       <div class="textSched" id="examSched">
+        <!-- This has been set on display:none: -->
         <p>The End Of April (Date Is Not Decided Yet)</p>
       </div>
     </div>
@@ -141,6 +143,16 @@
         </div>
         <div class="logo-container marginLogo">
           DOC&nbsp;&nbsp;&nbsp;HOSTER.
+          <div class="itemOne">
+            <div class="circleProfileMob">
+              <img
+                src="./img/andreas-gucklhorn-mawU2PoJWfU-unsplash.jpg"
+                alt=""
+                srcset=""
+                id="profilePicHeadMob"
+              />
+            </div>
+          </div>
         </div>
         <div class="items">
           <div class="itemOne itemHover">
@@ -568,7 +580,7 @@
       </footer>
     </section>
 
-    <section class="signUpOrLogInOpt">
+    <section class="signUpOrLogInOpt" id="selectOption">
       <div class="signUpOrLogin">
         <div class="signUpBtnF">
           <button class="buttonForm" id="signUpFormBlock">Sign Up</button>
@@ -767,10 +779,41 @@
           </div>
         </div>
         <div class="submitButton changeDetailBtn">
-          <button class="signUpBtn" id="updateData">LOG IN</button>
+          <button class="signUpBtn" id="updateData">UPDATE PROFILE</button>
         </div>
       </div>
     </section>
+
+    <!-- <section class="alertPlates">
+      <div class="subCont">
+        <div class="alertPlateOne">
+          <div class="alertSignUp">
+            <p class="alertAcCreate">
+              Account Created, Refresh The Page To Auto Login.
+            </p>
+          </div>
+        </div>
+        <div class="alertPlateTwo alertPlateOne">
+          <div class="LogOutUser">
+            <p class="alertAcCreate">You've Been Logged Out Of Your Account.</p>
+          </div>
+        </div>
+        <div class="alertPlateThree alertPlateOne">
+          <div class="ResetPassword">
+            <p class="alertAcCreate">
+              Your Password Reset Link Has Been Sent To Your Email.
+            </p>
+          </div>
+        </div>
+        <div class="alertPlateThree alertPlateOne">
+          <div class="ResetPassword">
+            <p class="alertAcCreate">
+              Logged In As <span id="emailLogInWho">dedpool2210@gmail.com</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> -->
 
     <script type="module">
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
@@ -990,6 +1033,9 @@
               ).value = user_name);
               let imageUpdate = (document.getElementById(
                 "profileImageCard"
+              ).src = profile_image);
+              let profilePicHeadMob = (document.getElementById(
+                "profilePicHeadMob"
               ).src = profile_image);
               // let profile_image = snapshot.val().profile_picture;
             } else {

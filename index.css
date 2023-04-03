@@ -67,12 +67,17 @@ body {
   margin: 0 40px 0 0;
 }
 
-.circleProfile img {
+.circleProfile img,
+.circleProfileMob img {
   width: 50px;
   height: 50px;
   border-radius: 50px;
   box-shadow: 0 0 15px #2f2f2f;
   object-fit: cover;
+  cursor: pointer;
+}
+.circleProfileMob {
+  display: none;
 }
 .trialForm {
   position: absolute;
@@ -827,6 +832,14 @@ label {
   background-color: rgb(244, 244, 244);
   z-index: 55;
   border-radius: 10px;
+  opacity: 0;
+  z-index: -5;
+  transition: 0.5s;
+}
+.toggleSignUpDialogue {
+  z-index: 55;
+  opacity: 1;
+  transition: 0.5s;
 }
 .signUpOrLogInOpt:after {
   content: "";
@@ -945,7 +958,42 @@ label {
 .changeDetailBtn {
   margin: 20px 0 0 0;
 }
+.alertPlates {
+  position: absolute;
+  bottom: 30px;
+  z-index: 5;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alertPlateOne {
+  width: 100%;
+  height: 40px;
+  background-color: #102a4e;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 0;
+}
+.alertAcCreate {
+  margin: 0 0 0 10px;
+}
 @media only screen and (max-width: 675px) {
+  .textSched {
+    display: none;
+  }
+  .circleProfileMob {
+    display: block;
+  }
+  .circleProfileMob img {
+    width: 50px;
+    height: 50px;
+    margin: 5px 0 0 30px;
+  }
   .students {
     width: 100%;
     height: 400px;
