@@ -621,8 +621,8 @@
               type="text"
               id="fullName"
               class="inputStyle mobileWidth"
-              maxlength="22"
-              value="TaxoRin"
+              maxlength="18"
+              value=""
             />
           </div>
           <div class="userName">
@@ -633,7 +633,7 @@
               id="userName"
               class="inputStyle mobileWidth"
               maxlength="16"
-              value="TaxoWill"
+              value=""
             />
           </div>
         </div>
@@ -646,13 +646,15 @@
         </div>
         <div class="inputFlex">
           <div class="pass">
-            <label for="password">Your Password</label>
+            <label for="password">Create A Password</label>
             <br />
             <input
               type="password"
               class="inputStyle inpEmailSt"
               id="password"
-              value="123456"
+              value=""
+              maxlength="30"
+              minlength="8"
             />
             <img
               src="./img/eye-off-svgrepo-com.svg"
@@ -678,6 +680,10 @@
         </div>
         <div class="imageUploadProcess">
           <div class="imageUploadProcessMain">
+            <div class="progressText">
+              <div class="uploadingText" id="textStatus"></div>
+              <div class="percentage" id="percentageTxt"></div>
+            </div>
             <div class="imageUploadProcessSub" id="mainProgressSignUp"></div>
           </div>
         </div>
@@ -685,6 +691,15 @@
           <button class="signUpBtn" id="signUpBtn">SIGN UP</button>
         </div>
       </div>
+      <section class="alertPlates">
+        <div class="subCont">
+          <div class="alertPlateOne" id="bringUpCreateAc">
+            <div class="alertSignUp">
+              <p class="alertAcCreate" id="createdInfo"></p>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
 
     <section class="loginFormSec" id="loginForm">
@@ -724,6 +739,15 @@
         </div>
         <div class="passReset" id="passRest">Forgot Password?</div>
       </div>
+      <section class="alertPlates">
+        <div class="subCont">
+          <div class="alertPlateThree alertPlateOne" id="LoggedInAs">
+            <div class="ResetPassword">
+              <p class="alertAcCreate" id="loggedInAsOr"></p>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
 
     <section class="myProfileSec" id="profileBlock">
@@ -775,7 +799,22 @@
           <div class="subDiv">
             <label for="userNameUpdate">Select New Image</label>
             <br />
-            <input type="file" id="imageUpdate" placeholder="fileUp" />
+
+            <input
+              type="file"
+              id="imageUpdate"
+              placeholder="fileUp"
+              accept="image/png , image/jpg, image/jpeg"
+            />
+          </div>
+        </div>
+        <div class="imageUploadProcess">
+          <div class="imageUploadProcessMain">
+            <div class="progressText">
+              <div class="uploadingText" id="textStatusUpdate"></div>
+              <div class="percentage" id="percentageTxtUpdate"></div>
+            </div>
+            <div class="imageUploadProcessSub" id="updateProgress"></div>
           </div>
         </div>
         <div class="submitButton changeDetailBtn">
@@ -784,36 +823,15 @@
       </div>
     </section>
 
-    <!-- <section class="alertPlates">
+    <section class="alertPlates">
       <div class="subCont">
-        <div class="alertPlateOne">
-          <div class="alertSignUp">
-            <p class="alertAcCreate">
-              Account Created, Refresh The Page To Auto Login.
-            </p>
-          </div>
-        </div>
-        <div class="alertPlateTwo alertPlateOne">
+        <div class="alertPlateTwo alertPlateOne" id="bringUpLogOutUser">
           <div class="LogOutUser">
-            <p class="alertAcCreate">You've Been Logged Out Of Your Account.</p>
-          </div>
-        </div>
-        <div class="alertPlateThree alertPlateOne">
-          <div class="ResetPassword">
-            <p class="alertAcCreate">
-              Your Password Reset Link Has Been Sent To Your Email.
-            </p>
-          </div>
-        </div>
-        <div class="alertPlateThree alertPlateOne">
-          <div class="ResetPassword">
-            <p class="alertAcCreate">
-              Logged In As <span id="emailLogInWho">dedpool2210@gmail.com</span>
-            </p>
+            <p class="alertAcCreate" id="loggedOutPlate"></p>
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
     <script type="module">
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
@@ -895,6 +913,17 @@
                 email: email,
                 full_name: fullName,
               });
+              let createdInfo = (document.getElementById(
+                "createdInfo"
+              ).innerHTML = "Account Created, Refresh The Page To Auto Login.");
+              let bringUpCreateAc = document.getElementById("bringUpCreateAc");
+              bringUpCreateAc.classList.add("bringUpAccountToggle");
+
+              setTimeout(() => {
+                let bringUpCreateAc =
+                  document.getElementById("bringUpCreateAc");
+                bringUpCreateAc.classList.remove("bringUpAccountToggle");
+              }, 5000);
             } else {
               const imageInput = document.getElementById("imageInput").files[0];
               const imageName = document.getElementById("imageInput").value;
@@ -902,7 +931,19 @@
                 storage,
                 `${user.uid}/${imageName}` + imageInput
               );
+              let createdInfo = (document.getElementById(
+                "createdInfo"
+              ).innerHTML =
+                "Account Created, Refresh The Page To Auto Login.(Please Wait For Image To Upload.)");
 
+              let bringUpCreateAc = document.getElementById("bringUpCreateAc");
+              bringUpCreateAc.classList.add("bringUpAccountToggle");
+
+              setTimeout(() => {
+                let bringUpCreateAc =
+                  document.getElementById("bringUpCreateAc");
+                bringUpCreateAc.classList.remove("bringUpAccountToggle");
+              }, 5000);
               const uploadTask = uploadBytesResumable(storageRef, imageInput);
 
               uploadTask.on(
@@ -911,8 +952,17 @@
                   const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
+                  let mathFloor = Math.floor(progress);
+
                   let mainProgressSignUp =
                     document.getElementById("mainProgressSignUp");
+
+                  let percentageTxt = (document.getElementById(
+                    "percentageTxt"
+                  ).innerHTML = mathFloor + "%");
+                  let textStatus = (document.getElementById(
+                    "textStatus"
+                  ).innerHTML = "Uploading Image...");
 
                   mainProgressSignUp.style.width = progress + "%";
                   console.log(mainProgressSignUp);
@@ -952,9 +1002,7 @@
               );
             }
           })
-          .catch((error) => {
-            console.log(error);
-          });
+          .catch((error) => {});
       };
       let imageInput = document.getElementById("imageInput");
 
@@ -978,10 +1026,38 @@
         sendPasswordResetEmail(auth, email)
           .then(() => {
             console.log("email send");
+
+            let LoggedInAs = document.getElementById("LoggedInAs");
+
+            LoggedInAs.classList.add("bringUpAccountToggle");
+
+            setTimeout(() => {
+              LoggedInAs.classList.remove("bringUpAccountToggle");
+            }, 5000);
+
+            let loggedInAsOr = (document.getElementById(
+              "loggedInAsOr"
+            ).innerHTML = "Reset Link Has Been Sent.");
             // Password reset email sent successfully
           })
           .catch((error) => {
-            // Handle error
+            let errorCode = error.code;
+
+            if (errorCode == "auth/user-not-found") {
+              console.log("user not found");
+              let LoggedInAs = document.getElementById("LoggedInAs");
+
+              LoggedInAs.classList.add("bringUpAccountToggle");
+
+              let loggedInAsOr = (document.getElementById(
+                "loggedInAsOr"
+              ).innerHTML = "User Not Found.");
+
+              setTimeout(() => {
+                LoggedInAs.classList.remove("bringUpAccountToggle");
+              }, 5000);
+            }
+            console.log(error);
           });
       };
 
@@ -997,12 +1073,51 @@
             console.log(userVerified);
             const user = userCredential.user;
             console.log("logged in");
-
             readToDB();
+
+            let LoggedInAs = document.getElementById("LoggedInAs");
+
+            LoggedInAs.classList.add("bringUpAccountToggle");
+
+            setTimeout(() => {
+              LoggedInAs.classList.remove("bringUpAccountToggle");
+            }, 5000);
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            console.log(errorCode);
+
+            let stringUserNotF = "auth/user-not-found";
+            let stringUserPassW = "auth/wrong-password";
+
+            if (errorCode == "auth/user-not-found") {
+              console.log("user not found");
+              let LoggedInAs = document.getElementById("LoggedInAs");
+
+              LoggedInAs.classList.add("bringUpAccountToggle");
+
+              let loggedInAsOr = (document.getElementById(
+                "loggedInAsOr"
+              ).innerHTML = "User Not Found.");
+
+              setTimeout(() => {
+                LoggedInAs.classList.remove("bringUpAccountToggle");
+              }, 5000);
+            } else if (errorCode == "auth/wrong-password") {
+              let LoggedInAs = document.getElementById("LoggedInAs");
+
+              LoggedInAs.classList.add("bringUpAccountToggle");
+
+              let loggedInAsOr = (document.getElementById(
+                "loggedInAsOr"
+              ).innerHTML = "Your Entered Password Is Wrong.");
+
+              setTimeout(() => {
+                LoggedInAs.classList.remove("bringUpAccountToggle");
+              }, 5000);
+              console.log("Entered Password Wrong Hai Bhai");
+            }
           });
       };
 
@@ -1037,6 +1152,10 @@
               let profilePicHeadMob = (document.getElementById(
                 "profilePicHeadMob"
               ).src = profile_image);
+
+              let loggedInAsOr = (document.getElementById(
+                "loggedInAsOr"
+              ).innerHTML = "Logged In As" + " " + email_user);
               // let profile_image = snapshot.val().profile_picture;
             } else {
               console.log("No data available");
@@ -1081,21 +1200,34 @@
               const progress =
                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
               console.log("Upload is " + progress + "% done");
-              switch (snapshot.state) {
-                case "paused":
-                  console.log("Upload is paused");
-                  break;
-                case "running":
-                  console.log("Upload is running");
-                  break;
-              }
+
+              let MathProgress = Math.floor(progress);
+
+              let updateProgress = (document.getElementById(
+                "updateProgress"
+              ).style.width = progress + "%");
+
+              let percentageTxtUpdate = (document.getElementById(
+                "percentageTxtUpdate"
+              ).innerHTML = MathProgress + "%");
+
+              let textStatusUpdate = (document.getElementById(
+                "textStatusUpdate"
+              ).innerHTML = "Uploading Image...");
             },
             (error) => {
               alert(error);
             },
             () => {
               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                console.log("File available at", downloadURL);
+                console.log(downloadURL);
+
+                let imageId = (document.getElementById("profilePicHead").src =
+                  downloadURL);
+
+                let imageUpdate = (document.getElementById(
+                  "profileImageCard"
+                ).src = downloadURL);
 
                 // let email = document.getElementById("email").value;
                 let userNameUp =
@@ -1115,13 +1247,36 @@
       let logOutUser = document.getElementById("logOutUser");
 
       logOutUser.onclick = function () {
-        signOut(auth)
-          .then(() => {
-            console.log("fucked off");
-          })
-          .catch((error) => {
-            // An error happened.
-          });
+        if (auth.currentUser != null) {
+          signOut(auth)
+            .then(() => {
+              let loggedOutPlate = (document.getElementById(
+                "loggedOutPlate"
+              ).innerHTML = "You've Been Logged Out Of Your Account.");
+
+              let bringUpLogOutUser =
+                document.getElementById("bringUpLogOutUser");
+
+              bringUpLogOutUser.classList.add("bringUpAccountToggle");
+
+              setTimeout(() => {
+                bringUpLogOutUser.classList.remove("bringUpAccountToggle");
+              }, 5000);
+            })
+            .catch((error) => {});
+        } else {
+          let loggedOutPlate = (document.getElementById(
+            "loggedOutPlate"
+          ).innerHTML = "You've Been Already Logged Out Of Your Account.");
+
+          let bringUpLogOutUser = document.getElementById("bringUpLogOutUser");
+
+          bringUpLogOutUser.classList.add("bringUpAccountToggle");
+
+          setTimeout(() => {
+            bringUpLogOutUser.classList.remove("bringUpAccountToggle");
+          }, 5000);
+        }
       };
 
       setPersistence(auth, browserLocalPersistence)

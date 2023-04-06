@@ -780,13 +780,22 @@ label {
   background: none;
   width: 270px;
 }
+.progressText {
+  display: flex;
+  height: 10px;
+  margin: 10px 0 50px 0;
+  font-size: 0.9rem;
+  width: 100%;
+  /* justify-content: space-between; */
+  position: absolute;
+}
 .imageUploadProcess {
   width: 100%;
-  height: 20px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 0 20px 0;
+  margin: 20px 0 20px 0;
 }
 .imageUploadProcessMain {
   width: 80%;
@@ -795,13 +804,15 @@ label {
   border-radius: 10px;
   display: flex;
   align-items: center;
+  margin: 20px 0 0 0;
+  padding: 0 1px 0.5px 1px;
 }
 .imageUploadProcessSub {
-  width: 0%;
+  width: 100%;
   height: 7px;
   background-color: #1c6b15;
   border-radius: 10px;
-  margin: 0 0 0 0.5px;
+  margin: 0.5px 0 0 0.5px;
   transition: 0.2s;
 }
 .submitButton {
@@ -865,6 +876,7 @@ label {
   background-color: #a9a9a9;
   margin: 0 auto;
 }
+
 /*  */
 /*  */
 /*  */
@@ -926,7 +938,7 @@ label {
 }
 .myProfileDiv {
   width: 310px;
-  height: 480px;
+  height: 520px;
   background-color: #f1f1f1;
   border-radius: 10px;
   color: #000;
@@ -960,7 +972,7 @@ label {
 }
 .alertPlates {
   position: absolute;
-  bottom: 30px;
+  bottom: 50px;
   z-index: 5;
   width: 100%;
   height: 40px;
@@ -968,9 +980,17 @@ label {
   justify-content: center;
   align-items: center;
 }
-
-.alertPlateOne {
+.subCont {
+  /* position: relative; */
   width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.alertPlateOne {
+  width: 360px;
   height: 40px;
   background-color: #102a4e;
   text-align: left;
@@ -978,9 +998,27 @@ label {
   justify-content: flex-start;
   align-items: center;
   padding: 10px 0;
+  margin: 10px 0;
+  position: absolute;
+  top: 0;
+  border-radius: 10px;
+  font-weight: bolder;
+  box-shadow: 0 0 10px #011025;
+  opacity: 0;
+  transform: translateY(120px);
+  pointer-events: none;
+  transition: 0.5s;
 }
 .alertAcCreate {
   margin: 0 0 0 10px;
+}
+.bringUpAccountToggle {
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 557;
+}
+.loggedInAsLight {
+  font-weight: lighter;
 }
 @media only screen and (max-width: 675px) {
   .textSched {
