@@ -718,19 +718,35 @@
           <div class="inputField">
             <label for="emailLogin">Your Email</label>
             <br />
-            <input type="text" id="emailLogin" class="inputStyle widthInput" />
+            <input
+              type="text"
+              id="emailLogin"
+              class="inputStyle widthInput"
+              placeholder="example@gmail.com"
+            />
           </div>
         </div>
         <div class="inputFlex">
           <div class="inputField">
-            <label for="passwordLogin">Your Password</label>
-            <br />
-            <input
-              type="password"
-              id="passwordLogin"
-              value="123456"
-              class="inputStyle widthInput"
-            />
+            <div class="pass">
+              <label for="passwordLogin">Your Password</label>
+              <br />
+              <input
+                type="password"
+                id="passwordLogin"
+                value="123456"
+                class="inputStyle widthInput"
+                placeholder="Password"
+              />
+              <img
+                src="./img/eye-off-svgrepo-com.svg"
+                alt=""
+                srcset=""
+                class="eyeOff"
+                onclick="changeInputTypeLogin()"
+                id="eyeImgLogIn"
+              />
+            </div>
           </div>
         </div>
 

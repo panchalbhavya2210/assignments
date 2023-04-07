@@ -380,10 +380,26 @@ function changeInputType() {
   let passType = "password";
 
   if (password.type == passType) {
-    eyeImg.src = "./img/eye-off-svgrepo-com.svg";
+    eyeImg.src = "./img/eye-svgrepo-com.svg";
     password.type = textType;
   } else {
+    eyeImg.src = "./img/eyesvgrepo-com.svg";
+    password.type = passType;
+  }
+}
+
+function changeInputTypeLogin() {
+  let password = document.getElementById("passwordLogin");
+  let eyeImg = document.getElementById("eyeImgLogIn");
+
+  let textType = "text";
+  let passType = "password";
+
+  if (password.type == passType) {
     eyeImg.src = "./img/eye-svgrepo-com.svg";
+    password.type = textType;
+  } else {
+    eyeImg.src = "./img/eye-off-svgrepo-com.svg";
     password.type = passType;
   }
 }

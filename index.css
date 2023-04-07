@@ -912,6 +912,7 @@ label {
 }
 .passReset {
   text-align: right;
+  cursor: pointer;
   margin: 10px 10px 0 0;
 }
 .widthInput {
@@ -1005,7 +1006,7 @@ label {
   font-weight: bolder;
   box-shadow: 0 0 10px #011025;
   opacity: 0;
-  transform: translateY(120px);
+  transform: translateY(-0px);
   pointer-events: none;
   transition: 0.5s;
 }
@@ -1014,11 +1015,14 @@ label {
 }
 .bringUpAccountToggle {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(-40px);
   z-index: 557;
 }
 .loggedInAsLight {
   font-weight: lighter;
+}
+#eyeImgLogIn {
+  margin: 0 10px 0 0;
 }
 @media only screen and (max-width: 675px) {
   .textSched {
