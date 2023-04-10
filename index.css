@@ -886,7 +886,7 @@ label {
 /*  */
 /*  */
 .loginFormSec {
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: -5;
   opacity: 0;
@@ -976,7 +976,7 @@ label {
   bottom: 50px;
   z-index: 5;
   width: 100%;
-  height: 40px;
+  height: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -984,7 +984,7 @@ label {
 .subCont {
   /* position: relative; */
   width: 100%;
-  height: 40px;
+  height: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
