@@ -628,29 +628,19 @@ body {
   position: absolute;
   top: 60px;
   right: 200px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.731);
   z-index: 55;
   color: #000;
   padding: 10px;
   border-radius: 10px;
   opacity: 0;
   transition: 0.5s;
+  backdrop-filter: blur(20px);
 }
 .toggleTable {
   opacity: 1;
 }
-.textSched::before {
-  content: "";
-  position: absolute;
-  /* width: 10px;
-  height: 10px; */
 
-  top: -24%;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent #fff transparent;
-  right: 150px;
-}
 .signUpForm {
   position: fixed;
   top: 0;
@@ -1024,9 +1014,34 @@ label {
 #eyeImgLogIn {
   margin: 0 10px 0 0;
 }
+table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #000;
+}
 @media only screen and (max-width: 675px) {
   .textSched {
-    display: none;
+    position: fixed;
+    top: 0;
+    width: 90%;
+    opacity: 0;
+    display: block;
+    left: 0;
+    pointer-events: none;
+    text-align: center;
+  }
+  .callExamShed {
+    pointer-events: all;
+    opacity: 1;
+  }
+  .faCross {
+    margin: 20px 0 0 0;
+  }
+  .faCross button {
+    padding: 5px 10px;
+    background-color: var(--pallet);
+    border: none;
+    border-radius: 10px;
   }
   .circleProfileMob {
     display: block;

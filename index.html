@@ -60,7 +60,7 @@
             </div>
           </a>
         </div>
-        <div class="aniMationBar">
+        <div class="aniMationBar" onclick="runExamShed()">
           <div class="navItems">
             <p>Exam Schedule</p>
             <span>
@@ -128,8 +128,47 @@
 
     <div class="endOfApril">
       <div class="textSched" id="examSched">
-        <!-- This has been set on display:none: -->
-        <p>The End Of April (Date Is Not Decided Yet)</p>
+        <!-- This has been set on display:none: on mobile -->
+        <table>
+          <tr class="rowHead">
+            <th>Date</th>
+            <th>Time</th>
+            <th>Subject</th>
+          </tr>
+          <tr>
+            <td>28/04/2023</td>
+            <td>12:00 TO 13:00</td>
+            <td>ICSD-2</td>
+          </tr>
+          <tr>
+            <td>29/04/2023</td>
+            <td>12:00 TO 13:00</td>
+            <td>JAVA PROG.</td>
+          </tr>
+          <tr>
+            <td>01/05/2023</td>
+            <td>12:00 TO 13:00</td>
+            <td>SAQT</td>
+          </tr>
+          <tr>
+            <td>02/05/2023</td>
+            <td>12:00 TO 13:00</td>
+            <td>DBMS-2</td>
+          </tr>
+          <tr>
+            <td>03/05/2023</td>
+            <td>12:00 TO 13:00</td>
+            <td>E-COM</td>
+          </tr>
+          <tr>
+            <td>04/05/2023</td>
+            <td>12:00 TO 13:00</td>
+            <td>POM</td>
+          </tr>
+        </table>
+        <div class="faCross">
+          <button onclick="rejectExamShed()">Close</button>
+        </div>
       </div>
     </div>
 
@@ -486,7 +525,7 @@
                   </a>
                 </div>
               </div>
-              <p>COPYRIGHT © 2023</p>
+              <p>NO COPYRIGHT © 2023-24</p>
             </div>
             <div class="navLinks">
               <div class="navigation">
@@ -548,7 +587,9 @@
                   srcset=""
                   class="imgSmall"
                 />
-                <button class="navigationTut">Exam Schedule</button>
+                <button class="navigationTut" onclick="runExamShedTwo()">
+                  Exam Schedule
+                </button>
               </div>
               <div class="home navShortcut">
                 <img

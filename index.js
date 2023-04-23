@@ -1,14 +1,3 @@
-let arrayNew = [
-  {
-    java: {
-      0: 1,
-    },
-    database: {
-      0: 1,
-    },
-  },
-];
-
 let signUpFormBlock = document.getElementById("signUpFormBlock");
 
 signUpFormBlock.onclick = function () {
@@ -129,11 +118,17 @@ function updateTimer() {
   }
 }
 
-if (day < 10 || month < 10) {
+if (day < 10 && month < 10) {
   dateShow.innerHTML = "0" + day + "/" + "0" + month + "/" + year;
 } else {
-  dateShow.innerHTML = "0" + day + "/" + month + "/" + year;
+  dateShow.innerHTML = day + "/" + month + "/" + year;
 }
+
+// if (month < 10) {
+//   dateShow.innerHTML = day + "/" + "0" + month + "/" + year;
+// } else {
+//   dateShow.innerHTML = day + "/" + month + "/" + year;
+// }
 
 // if (month < 10) {
 //   dateShow.innerHTML = day + "/" + "0" + month + "/" + year;
@@ -208,33 +203,6 @@ for (let i = 0; i < semFourCard.length; i++) {
   });
 }
 
-// let dochoster = document.querySelector
-// (".docLogo");
-
-// dochoster.onclick = (event) => {
-//   let iteration = 0;
-
-//   clearInterval(interval);
-
-//   interval = setInterval(() => {
-//     event.target.innerText = event.target.innerText
-//       .split("")
-//       .map((letter, index) => {
-//         if (index < iteration) {
-//           return event.target.dataset.value[index];
-//         }
-
-//         return letters[Math.floor(Math.random() * 26)];
-//       })
-//       .join("");
-
-//     if (iteration >= event.target.dataset.value.length) {
-//       clearInterval(interval);
-//     }
-
-//     iteration += 1 / 3;
-//   }, 50);
-// };
 let subTogg = document.querySelectorAll(".subjectAndLins");
 let sliderMain = document.querySelector(".sliderMain");
 let sliderSub = document.querySelector(".sliderSub");
@@ -402,4 +370,20 @@ function changeInputTypeLogin() {
     eyeImg.src = "./img/eye-off-svgrepo-com.svg";
     password.type = passType;
   }
+}
+
+function runExamShed() {
+  let examSched = document.getElementById("examSched");
+
+  examSched.classList.add("callExamShed");
+}
+function runExamShedTwo() {
+  let examSched = document.getElementById("examSched");
+
+  examSched.classList.add("callExamShed");
+}
+function rejectExamShed() {
+  let examSched = document.getElementById("examSched");
+
+  examSched.classList.remove("callExamShed");
 }
