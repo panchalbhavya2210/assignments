@@ -1038,6 +1038,7 @@ table td {
     opacity: 1;
   }
   .faCross {
+    display: block;
     margin: 20px 0 0 0;
   }
   .faCross button {
