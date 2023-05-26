@@ -246,14 +246,6 @@ const observerOne = new IntersectionObserver(function (entries) {
       for (let i = 0; i < allDisSub.length; i++) {
         allDisSub[i].classList.add("subToggleOpacity");
       }
-    } else {
-      students.classList.remove("waveToggle");
-      boldAss.classList.remove("textToggle");
-      lightRed.classList.remove("textToggle");
-      disNine.classList.remove("textToggle");
-      for (let i = 0; i < 4; i++) {
-        allDisSub[i].classList.remove("subToggleOpacity");
-      }
     }
   });
 }, option);
@@ -269,37 +261,6 @@ const observerTwo = new IntersectionObserver(function (entries, event) {
     let mainBlurToggle = document.querySelector(".mainBlur");
     if (entriAssigned.isIntersecting) {
       mainBlurToggle.classList.add("mainTogg");
-      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-      let interval = null;
-      let iteration = 0;
-
-      clearInterval(interval);
-
-      interval = setInterval(() => {
-        let docTitle = document.getElementById("docTitle");
-
-        docTitle.innerText = docTitle.innerText
-          .split("")
-          .map((letter, index) => {
-            if (index < iteration) {
-              return docTitle.dataset.value[index];
-            }
-
-            return letters[Math.floor(Math.random() * 26)];
-          })
-          .join("");
-
-        if (iteration >= docTitle.dataset.value.length) {
-          clearInterval(interval);
-        }
-
-        iteration += 1 / 3;
-      }, 50);
-    } else {
-      mainBlurToggle.classList.remove("mainTogg");
-
-      console.log("neeeeeeeeeeeeeigh");
     }
   });
 }, option);
