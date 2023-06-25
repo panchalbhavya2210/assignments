@@ -136,9 +136,9 @@ if (day < 10 && month < 10) {
 //   dateShow.innerHTML = day + "/" + month + "/" + year;
 // }
 
-if (hours == 00) {
+if (hours == 0) {
   greetUser.innerHTML = "Good Night";
-} else if (hours > 05 && hours < 12) {
+} else if (hours > 5 && hours < 12) {
   greetUser.innerHTML = "Good Morning";
 } else if (hours > 12 && hours < 17) {
   greetUser.innerHTML = "Good Afternoon";
