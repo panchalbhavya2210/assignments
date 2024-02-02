@@ -1,3 +1,5 @@
+alert("Semester 6 assignment of python will be added on 4th feb")
+
 let signUpFormBlock = document.getElementById("signUpFormBlock");
 
 signUpFormBlock.onclick = function () {
