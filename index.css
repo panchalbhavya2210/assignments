@@ -1358,9 +1358,7 @@ table td {
     transform: translateX(20px) translateY(-4px) rotate(-45deg);
     /* background-color: #000000; */
   }
-  .barOneOToggle {
-    /* background-color: #000; */
-  }
+
   .itemsNav {
     width: 100%;
     height: 60%;
