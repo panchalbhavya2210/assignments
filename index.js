@@ -1,5 +1,3 @@
-alert("Semester 6 assignment of python will be added on 4th feb")
-
 let signUpFormBlock = document.getElementById("signUpFormBlock");
 
 signUpFormBlock.onclick = function () {
@@ -169,7 +167,7 @@ function runHams() {
 
   let animeBar = document.querySelectorAll(".aniMationBar");
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 10; i++) {
     animeBar[i].classList.add("toggBar");
   }
 }
